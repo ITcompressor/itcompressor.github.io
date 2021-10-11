@@ -5,21 +5,21 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Examples</title>
+    <title>archives</title>
     <meta name="description" content="Documentation for ITcompressor">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1633981437" media="screen" />
-    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1633981437" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1633982191" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1633982191" media="screen" />
 
-    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1633981437" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1633982191" media="screen" />
 
     
 
     <script>
-    var DOCTAVE_TIMESTAMP = "1633981437";
+    var DOCTAVE_TIMESTAMP = "1633982191";
     var color = localStorage.getItem('doctave-color')
 
     if (color === 'dark') {
@@ -69,7 +69,15 @@
                 <nav class='site-nav'>
     <ul>
         
-            <li><a class="active" href="/examples">Examples</a></li>
+            <li><a href="/tools">tools</a></li>
+            
+                <ul>
+    
+        <li><a class="active" href="/tools/archives">archives</a></li>
+        
+    
+</ul>
+
             
         
     </ul>
@@ -86,41 +94,41 @@
 
             </div>
             <div class='content'>
-                <h1 id="examples-1">Examples</h1>
-<p>This page shows some of the special features that come out of the box in Doctave. You can view how
-this file is constructed by opening the <code>examples.md</code> file in your <code>docs</code> folder.</p>
-<h2 id="diagrams-2">Diagrams</h2>
-<p>Doctave comes with Mermaid.js support, which means you can create intricate diagrams directly in
-your Markdown files:</p>
-<div class="mermaid">graph TD;
-    A--&gt;B;
-    A--&gt;C;
-    B--&gt;D;
-    C--&gt;D;
-
-</div>
-<p>You can read more about Mermaid JS in the <a href="https://cli.doctave.com/features/mermaid-js">Doctave
-docs</a> or by going through the Mermaid JS
-<a href="https://mermaid-js.github.io/mermaid/diagrams-and-syntax-and-examples/n00b-syntaxReference.html">tutorials</a>.</p>
-<h2 id="syntax-highlighting-3">Syntax highlighting</h2>
-<p>Syntax highlighting is provided by <a href="https://prismjs.com/">Prism</a> and Doctave supports most popular
-languages out of the box.</p>
-<pre><code class="language-rust">impl Watcher {
-    fn notify&lt;S: Into&lt;String&gt;&gt;(&amp;self, path: PathBuf, msg: S) -&gt; bool {
-        self.channel.send((path, msg.into())).is_ok()
-    }
-}
+                <p>Работа с архивами через консоль</p>
+<p><strong>tags</strong> <code>tar.xz</code> <code>zip</code> <code>unrar</code> <code>tar</code> <code>gz</code> <code>bz2</code> <code>rar</code> <code>7zip</code> <code>tar.xz</code> <code>tgz</code>
+<strong>time</strong> 2021-09-05 20:26</p>
+<h2 id="создание-zip-архива-1">Создание zip архива</h2>
+<pre><code class="language-bash">zip -r myarch.zip mydir/*
 </code></pre>
-<p>You can refer to the Doctave <a href="https://cli.doctave.com/features/markdown">Markdown reference</a> to see
-how to use syntax highlighting.</p>
-<h2 id="search-4">Search</h2>
-<p>Doctave automatically indexes all your pages and allows you to search for them without any 3rd party
-services. You can see the search bar at the top of the page - hit the <code>s</code> key, and you can start
-searching all the content of the site.</p>
-<p>Note - the results are keyboard-friendly. Use either the tab key or arrow keys to navigate them.</p>
-<h2 id="dark-mode-5">Dark mode</h2>
-<p>You can turn on dark mode by clicking on the button on the left side of the page - the one with the
-moon icon. Your browser will remember your selection for each Doctave site.</p>
+<h2 id="распаковка-rar-архива-2">Распаковка rar архива</h2>
+<pre><code class="language-bash">unrar e file.rar
+</code></pre>
+<h2 id="распаковка-rar-с-сохранением-иерархии-3">Распаковка rar с сохранением иерархии</h2>
+<pre><code class="language-bash">unrar x file.rar
+</code></pre>
+<h2 id="распаковка-gz-архива-4">Распаковка gz архива</h2>
+<pre><code class="language-bash">gzip -d application-05-11-2020-7.log.gz
+</code></pre>
+<h2 id="создание-tar-контейнера-5">Создание tar контейнера</h2>
+<pre><code class="language-bash">tar -cvf name.tar /path/to/file1 /path/to/file2 /path/to/file3
+</code></pre>
+<h2 id="примеры-распаковка-tar-с-разными-типами-архивов-6">Примеры распаковка tar с разными типами архивов</h2>
+<pre><code class="language-bash">tar -xvf foo.tar
+tar -xvzf foo.tar.gz 
+tar -xvjf foo.tar.bz2 
+tar -xf file.tar.xz
+tar zxvf backups.tgz
+</code></pre>
+<h2 id="создание-tar.xz-7">Создание tar.xz</h2>
+<pre><code class="language-bash">tar -cJf kali-arm64.tar.xz kali-arm64/
+</code></pre>
+<h2 id="установка-7z-в-debian-like-дистрибутивах-8">Установка 7z в debian like дистрибутивах</h2>
+<pre><code class="language-bash">apt install p7zip
+</code></pre>
+<h2 id="примеры-работы-с-7z-9">Примеры работы с 7z</h2>
+<pre><code class="language-bash">7z x -so yourfile.tar.7z | tar xf - -C target_dir
+7z x yourfile.7z
+</code></pre>
 
             </div>
             <div class='sidebar-right'>
@@ -128,24 +136,40 @@ moon icon. Your browser will remember your selection for each Doctave site.</p>
                     <p class='page-nav-header'>On this page</p>
                     <ul>
                         
-                            <li class='page-nav-level-1'>
-                                <a href='#examples-1'>Examples</a>
+                            <li class='page-nav-level-2'>
+                                <a href='#создание-zip-архива-1'>Создание zip архива</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#diagrams-2'>Diagrams</a>
+                                <a href='#распаковка-rar-архива-2'>Распаковка rar архива</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#syntax-highlighting-3'>Syntax highlighting</a>
+                                <a href='#распаковка-rar-с-сохранением-иерархии-3'>Распаковка rar с сохранением иерархии</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#search-4'>Search</a>
+                                <a href='#распаковка-gz-архива-4'>Распаковка gz архива</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#dark-mode-5'>Dark mode</a>
+                                <a href='#создание-tar-контейнера-5'>Создание tar контейнера</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#примеры-распаковка-tar-с-разными-типами-архивов-6'>Примеры распаковка tar с разными типами архивов</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#создание-tar.xz-7'>Создание tar.xz</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#установка-7z-в-debian-like-дистрибутивах-8'>Установка 7z в debian like дистрибутивах</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#примеры-работы-с-7z-9'>Примеры работы с 7z</a>
                             </li>
                         
                     </ul>
@@ -161,10 +185,10 @@ moon icon. Your browser will remember your selection for each Doctave site.</p>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="/assets/mermaid.js?v=1633981437"></script>
-    <script type="text/javascript" src="/assets/elasticlunr.js?v=1633981437"></script>
-    <script type="text/javascript" src="/assets/doctave-app.js?v=1633981437"></script>
-    <script type="text/javascript" src="/assets/prism.js?v=1633981437"></script>
+    <script type="text/javascript" src="/assets/mermaid.js?v=1633982191"></script>
+    <script type="text/javascript" src="/assets/elasticlunr.js?v=1633982191"></script>
+    <script type="text/javascript" src="/assets/doctave-app.js?v=1633982191"></script>
+    <script type="text/javascript" src="/assets/prism.js?v=1633982191"></script>
 </body>
 
 </html>
