@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>tools</title>
+    <title>virtualbox</title>
     <meta name="description" content="Documentation for ITcompressor">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -73,14 +73,14 @@
             
                 <ul>
     
-        <li><a href="/soft/virtualbox">virtualbox</a></li>
+        <li><a class="active" href="/soft/virtualbox">virtualbox</a></li>
         
     
 </ul>
 
             
         
-            <li><a class="active" href="/tools">tools</a></li>
+            <li><a href="/tools">tools</a></li>
             
                 <ul>
     
@@ -108,13 +108,18 @@
 
             </div>
             <div class='content'>
-                <h1 id="index-of-tools-1">Index of tools</h1>
-<p>This page was generated automatically by Doctave, because the directory <code>docs/tools</code> did not contain an index <code>README.md</code> file. You can customize this page by creating one yourself.</p>
-<h2 id="pages-2">Pages</h2>
-<ul>
-<li><a href="/tools/vim">vim</a></li>
-<li><a href="/tools/archives">archives</a></li>
-</ul>
+                <p>Virtualbox</p>
+<p><strong>tags</strong> <code>vbox</code> <code>virtual box</code> <code>virtualization</code>
+<strong>date</strong> 2021-10-13 10:40</p>
+<h2 id="вывести-список-виртуалок-1">Вывести список виртуалок</h2>
+<pre><code class="language-bash">VBoxManage list vms
+</code></pre>
+<h2 id="запуск-виртуалки-2">Запуск виртуалки</h2>
+<pre><code class="language-bash">VBoxManage startvm 992b037a-c72c-4700-96b5-6cb2a7d2d76c
+</code></pre>
+<h2 id="вывести-атрибуты-виртуалки-с-грепом-3">Вывести атрибуты виртуалки с грепом</h2>
+<pre><code class="language-bash">VBoxManage guestproperty enumerate 992b037a-c72c-4700-96b5-6cb2a7d2d76c | grep IP
+</code></pre>
 
             </div>
             <div class='sidebar-right'>
@@ -122,12 +127,16 @@
                     <p class='page-nav-header'>On this page</p>
                     <ul>
                         
-                            <li class='page-nav-level-1'>
-                                <a href='#index-of-tools-1'>Index of tools</a>
+                            <li class='page-nav-level-2'>
+                                <a href='#вывести-список-виртуалок-1'>Вывести список виртуалок</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#pages-2'>Pages</a>
+                                <a href='#запуск-виртуалки-2'>Запуск виртуалки</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#вывести-атрибуты-виртуалки-с-грепом-3'>Вывести атрибуты виртуалки с грепом</a>
                             </li>
                         
                     </ul>
