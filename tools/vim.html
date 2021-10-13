@@ -1,0 +1,297 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>vim</title>
+    <meta name="description" content="Documentation for ITcompressor">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1634110798" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1634110798" media="screen" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1634110798" media="screen" />
+
+    
+
+    <script>
+    var DOCTAVE_TIMESTAMP = "1634110798";
+    var color = localStorage.getItem('doctave-color')
+
+    if (color === 'dark') {
+        document.getElementsByTagName('html')[0].classList.remove('light');
+        document.getElementsByTagName('html')[0].classList.add('dark');
+    } else {
+        document.getElementsByTagName('html')[0].classList.remove('dark');
+        document.getElementsByTagName('html')[0].classList.add('light');
+    }
+    </script>
+
+    
+</head>
+
+<body>
+    <label for='menu-toggle-switch' class='menu-toggle-button'>
+        ☰
+    </label>
+    <input type="checkbox" id="menu-toggle-switch" value='0' />
+    <div class='page'>
+        <div class='header'>
+            <div class='logo'>
+                
+                    <a href='/'>
+                        <img src="/favicon.ico" alt='ITcompressor logo'></img>
+                    </a>
+                
+                <h2 class='project-name'>
+                    <a href='/'>
+                        ITcompressor
+                    </a>
+                </h2>
+            </div>
+            <div class='search'>
+                <form id='search-form'>
+    <input type='text' id='search-box' autocomplete="off" placeholder="Search..."></input>
+    <span class='search-icon'>S</span>
+    <ul id='search-results'></ul>
+</form>
+
+            </div>
+            <div class='header-dummy-right'>
+            </div>
+        </div>
+        <div class='container'>
+            <div class='sidebar-left'>
+                <nav class='site-nav'>
+    <ul>
+        
+            <li><a href="/tools">tools</a></li>
+            
+                <ul>
+    
+        <li><a href="/tools/archives">archives</a></li>
+        
+    
+        <li><a class="active" href="/tools/vim">vim</a></li>
+        
+    
+</ul>
+
+            
+        
+    </ul>
+    <span id='light-dark-mode-switch'>
+        <svg xmlns="http://www.w3.org/2000/svg" id="dark-mode-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+        </svg>
+
+        <svg xmlns="http://www.w3.org/2000/svg" id="light-mode-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
+        </svg>
+    </span>
+</nav>
+
+            </div>
+            <div class='content'>
+                <p>vim</p>
+<p><strong>tags</strong> <code>vim</code> <code>editor</code>
+<strong>date</strong> 2021-10-13 10:34</p>
+<h2 id="переход-в-конец-файла-1">Переход в конец файла</h2>
+<p><code>+ заглавная G</code></p>
+<h2 id="файл-настройки:-2">Файл настройки:</h2>
+<pre><code>~/.vimrc
+</code></pre>
+<h2 id="можно-редактировать-файлы-через-сеть,-например-3">Можно редактировать файлы через сеть, например</h2>
+<pre><code>:e &lt;scp|ftp|ftps&gt;://user@host/path/to/the/file.txt
+</code></pre>
+<h2 id="файловый-менеджер-4">Файловый менеджер</h2>
+<pre><code>:Ex 
+</code></pre>
+<h2 id="==-основы-==-5">== Основы ==</h2>
+<pre><code>hjkl                      перемещение в разные стороны
+i                         режим вставки
+I                         добавление в начало строки
+a                         режим добавления
+A                         добавление в конец строки
+o                         добавить строку сразу за текущей
+O                         добавить строку перед текущей
+R                         писать поверх имеющегося текста
+u, :u[ndo]                отмена предыдущего действия (undo)
+CTR-R, :red[o]            отмена отмены предыдущего действия (redo)
+dd                        вырезать (удалить) строку
+cc                        удалить и начать редактирование
+yy                        копировать строку
+p                         вставить из буфера обмена
+&amp;lt;n&amp;gt;d                удалить n+1 строку
+&amp;lt;n&amp;gt;y                скопировать n+1 строку
+ESC                       перейти в режим просмотра
+DEL                       удалить следующий символ
+:&amp;lt;n&amp;gt;                перейти на строку #n
+%                         перейти к парной скобке
+:e **/filename.c          редактировать файл (с поиском по имени)
+:w [fname]                записать изменения
+:wa                       сохранить изменения во всех файлах
+:q                        выйти из редактора
+:q!                       выйти из редактора, не сохраняя изменения
+:pwd                      текущий каталог
+:cd [path]                перейти в другой каталог
+:!команда                 выполнить команду - man, git, и так далее стрелочками веерх и вниз можно автодополнять команды и искать по истории
+CTR+p или CTR+n           автоматическое дополнение текста (в режиме редактирования)
+CTR+r,=,&amp;lt;expr&amp;gt;      вставить выражение, например 5*2 - 3 (в режиме редактирования)
+CTR+u, CTR+d              Page Up / Page Down
+CTR+y, CTR+e              Перемотка вверх/вниз без движения курсора
+== Подсветка синтаксиса ==
+:syntax on                включить подсветку
+:syntax off               выключить подсветку (по умолчанию)
+== Перенос строк ==
+:set wrap                 разрешить word wrap (по умолчанию)
+:set nowrap               запретить word wrap
+== Печать ==
+:ha[rdcopy]                   распечатать документ
+:set printoptions=duplex:off  отключить двустороннюю печать
+== Сворачивание ==
+zc                        свернуть блок
+zo                        развернуть блок
+zM                        закрыть все блоки
+zR                        открыть все блоки
+za                        инвертирование
+zf                        см :set foldmethod=manual
+:set foldenable           включить свoрачивание
+:set foldmethod=syntax    сворачивание на основе синтаксиса
+:set foldmethod=indent    сворачивание на основе отступов
+:set foldmethod=manual    выделяем участок с помощью v и говорим zf
+:set foldmethod=marker    сворачивание на основе маркеров в тексте
+:set foldmarker=bigin,end задаем маркеры начала и конца блока
+== Маркеры ==
+ma                        установить локальный маркер a
+mB                        установить глобальный маркер B
+`c                        перейти к локальному маркеру c
+`0                        вернуться на позицию, на которой закончили работу при закрытии vim
+:marks                    просмотр маркеров
+set viminfo='1000,f1      маркеры пишутся в ~/.viminfo, восстанавливаясь при следующем запуске vim. маркер " хранит последнюю позицию курсора в файле
+== Сессии ==
+mksession file.session    сохранить текущую сессию
+source file.session       восстановить ранее сохраненную сессию
+== Макросы ==
+qa                        записать макрос с именем a
+q                         в режиме записи макроса: закончить запись
+@a                        выполнить макрос с именем a
+@@                        повторить последний макрос
+== Регистры ==
+"ayy                      скопировать строку в регистр a
+"bdd                      вырезать строку и поместить в регистр b
+"С2d                      вырезать три строки и дописать в конец регистра C
+:reg [name1][name2][...]  просмотреть содержимое регистров
+== Выделение ==
+v + hjkl                  выделение текста
+SHIFT + v                 выделить строку
+CTR + v                   выделение прямоугольника
+p                         вставить
+y                         копировать
+d                         удалить
+gu                        к нижнему регистру
+gU                        к верхнему регистру
+== Отступы ==
+[#]&amp;gt;                   сдвинуть выделенное вправо
+[#]&amp;lt;                   сдвинуть выделенное влево
+[#]&amp;gt;&amp;gt;               сдвинуть строку вправо
+[#]&amp;lt;&amp;lt;               сдвинуть строку влево
+set tabstop=#             для табуляции используется # пробелов
+set shiftwidth=#          в командах отступа используется # пробелов
+set [no]expandtab         заменять ли табуляцию на соответствующее число пробелов
+== Поиск и замена в файле ==
+/Выражение               поиск выражения в файле
+\cВыражение              поиск без учета регистра
+n                        следующее совпадение
+N                        предыдущее совпадение
+:%s/foo/bar/gi           замена строк, см http://eax.me/regular-expr/
+== Поиск по всему проекту ==
+:vimgrep /EXPR/ **/*.c   поиск по регулярному выражению
+:copen                   показать все найденные места
+:close                   скрыть все найденные места
+:cn                      переход к следующему результату
+:cp                      переход к предыдущему результату
+== Нумерация строк ==
+:set number              включить нумерацию строк
+:set nonumber            отключить нумерацию строк
+== Работа с вкладками (a.k.a табами) ==
+:tabnew [fname]          создать таб
+:tabs                    вывести список табов
+:tabn                    следующий таб
+:tabp                    предыдущий таб
+&amp;lt;n&amp;gt;gt              перейти на таб #n
+gt                       следующий таб
+gT                       предыдущий таб
+:tabm +1                 переместить таб вперед на одну позицию
+:tabm -1                 переместить таб назад на одну позицию
+:tabm 2                  переместить таб на заданную позицию (нумерация начинается с нуля)
+== Работа с окнами ==
+:split                   горизонтальное разбиение
+:vsplit                  вертикальное разбиение
+Ctr+W, затем
+  с                      закрыть окно
+  +-                     изменение высоты текущего окна
+  &amp;lt;&amp;gt;               изменение ширины текущего окна
+  =                      установить равный размер окон
+  hjkl или стрелочки     перемещение между окнами
+== Работа с кодировкой ==
+e ++enc=&amp;lt;имя кодировки&amp;gt;   Редактирование файла в ??? кодировке
+w ++enc=&amp;lt;имя кодировки&amp;gt;   Сохранить файл в новой кодировке
+set fileencodings=utf-8,koi8-r  Список автоматически определяемых кодировок в порядке убывания приоритета
+== Другое ==
+:set [no]wildmenu          При авто-дополнении в командной строке над ней выводятся возможные варианты
+:set list                  Отображать табуляцию и переводы строк
+q:                         История команд
+.                          Повторение последней команды
+</code></pre>
+
+            </div>
+            <div class='sidebar-right'>
+                <div class='page-nav' id='page-nav'>
+                    <p class='page-nav-header'>On this page</p>
+                    <ul>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#переход-в-конец-файла-1'>Переход в конец файла</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#файл-настройки:-2'>Файл настройки:</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#можно-редактировать-файлы-через-сеть,-например-3'>Можно редактировать файлы через сеть, например</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#файловый-менеджер-4'>Файловый менеджер</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#&#x3D;&#x3D;-основы-&#x3D;&#x3D;-5'>&#x3D;&#x3D; Основы &#x3D;&#x3D;</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class='wave-container'>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                    <path fill-opacity="0.35" d="M0,192L60,213.3C120,235,240,277,360,277.3C480,277,600,235,720,192C840,149,960,107,1080,122.7C1200,139,1320,213,1380,250.7L1440,288L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+                    <path fill-opacity="0.5" d="M0,160L60,181.3C120,203,240,245,360,229.3C480,213,600,139,720,138.7C840,139,960,213,1080,229.3C1200,245,1320,203,1380,181.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+                    <path fill-opacity="0.2" d="M0,224L60,197.3C120,171,240,117,360,117.3C480,117,600,171,720,186.7C840,203,960,181,1080,186.7C1200,192,1320,224,1380,240L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+                </svg>
+                <p>Powered by <a href='https://cli.doctave.com' target='_blank'>Doctave</a></p>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/assets/mermaid.js?v=1634110798"></script>
+    <script type="text/javascript" src="/assets/elasticlunr.js?v=1634110798"></script>
+    <script type="text/javascript" src="/assets/doctave-app.js?v=1634110798"></script>
+    <script type="text/javascript" src="/assets/prism.js?v=1634110798"></script>
+</body>
+
+</html>
