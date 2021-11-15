@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>wireguard</title>
+    <title>mongo_replica_set</title>
     <meta name="description" content="Documentation for ITcompressor">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -74,7 +74,7 @@
             
                 <ul>
     
-        <li><a href="/db/mongo_replica_set">mongo_replica_set</a></li>
+        <li><a class="active" href="/db/mongo_replica_set">mongo_replica_set</a></li>
         
     
 </ul>
@@ -88,7 +88,7 @@
         <li><a href="/soft/virtualbox">virtualbox</a></li>
         
     
-        <li><a class="active" href="/soft/wireguard">wireguard</a></li>
+        <li><a href="/soft/wireguard">wireguard</a></li>
         
     
 </ul>
@@ -123,106 +123,74 @@
 
             </div>
             <div class='content'>
-                <p>Установка и настройка Wireguard</p>
-<p><strong>tags</strong> <code>vpn</code> <code>selfhost</code>
-<strong>time</strong> 2021-10-16 11:33
-<strong>links</strong> <a href="https://devpew.com/blog/wireguard/">wireguard guilde</a> | <a href="https://youtu.be/03RCvhwcoN0">WireGuard. Настраиваем быстрый VPN</a> |</p>
-<h1 id="установка-wireguard-1">Установка wireguard</h1>
-<pre><code class="language-bash">apt install wireguard
-</code></pre>
-<p>разрешаем проброс пакетов</p>
-<pre><code class="language-bash">echo "net.ipv4.ip_forward=1" &gt;&gt; /etc/sysctl.conf
-</code></pre>
-<p>Проверям, добавилось или нет</p>
-<pre><code class="language-bash">sysctl -p
-</code></pre>
-<h1 id="конфигурация-wireguard-для-сервера-2">Конфигурация wireguard для сервера</h1>
-<p>Генерируем публичный и приватный ключ на сервере</p>
-<pre><code class="language-bash">wg genkey | tee /etc/wireguard/privatekey | wg pubkey | tee /etc/wireguard/publickey
-</code></pre>
-<p>Создаем конфиг</p>
-<pre><code class="language-bash">nano /etc/wireguard/wg0.conf
-</code></pre>
-<p>и добавляем</p>
-<pre><code>[Interface]
-Address = 10.0.0.1/24
-PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
-ListenPort = 51820
-PrivateKey = &lt;SERVER-PRIV-KEY&gt;
-</code></pre>
-<p>запускаем интерфейс</p>
-<pre><code class="language-bash">wg-quick up wg0
-</code></pre>
-<p>запускаем сервис</p>
-<pre><code class="language-bash">systemctl enable wg-quick@wg0
-</code></pre>
-<h2 id="проверяем-3">Проверяем</h2>
-<pre><code class="language-bash">wg show wg0
-</code></pre>
-<p>Проверяем работу службы</p>
-<pre><code class="language-bash">systemctl status wg-quick@wg0
-</code></pre>
-<p>Если вдруг возникли проблемы</p>
-<pre><code class="language-bash">wg-quick down wg0
-systemctl start wg-quick@wg0
-systemctl status wg-quick@wg0
-</code></pre>
-<h1 id="конфигурация-для-клиента-4">Конфигурация для клиента</h1>
-<p>на сервере</p>
-<pre><code class="language-bash">wg genkey | tee /etc/wireguard/mac_privatekey | wg pubkey | tee /etc/wireguard/mac_publickey
-</code></pre>
-<p>редактируем</p>
-<pre><code class="language-bash">nano /etc/wireguard/wg0.conf
-</code></pre>
-<p>и добавляем</p>
-<pre><code>...
-[Peer]
-PublicKey = &lt;СLIENT-PUBLIC-KEY&gt;
-AllowedIPs = 10.0.0.4/32
-</code></pre>
-<p>применяем конфиг</p>
-<pre><code class="language-bash">systemctl restart wg-quick@wg0
-systemctl status wg-quick@wg0
-</code></pre>
-<p>делаем конфигурацию для клиента, например <code>mac.conf</code> и добавляем туда</p>
-<pre><code>[Interface]
-PrivateKey = &lt;PEER_2_PRIVATE_KEY&gt;
-Address = 10.0.0.12/32
+                <p>Настройка mongo replica set</p>
+<p><strong>tags</strong> <code>mongo</code> <code>mongodb</code> <code>replication</code>
+<strong>date</strong> 2021-11-15 23:32
+<strong>links</strong> <a href="https://docs.mongodb.com/manual/tutorial/deploy-replica-set/">official doc</a> |</p>
+<blockquote>
+<p>Replica Set — это кластер серверов MongoDB, реализующий механизм репликации master-slave и автоматическое переключение между ними. Это рекомендуемый механизм репликации от разработчиков MongoDB. ... Primary — основной сервер mongoDB.</p>
+</blockquote>
+<blockquote>
+<p>Ставил 5ую монгу на ubuntu server. Для примера айпишники: 10.0.0.2, 10.0.0.3, 10.0.0.4 (and etc) и кастомный путь 
+/root/DATA/mongodb</p>
+</blockquote>
+<h2 id="установка-1">Установка</h2>
+<pre><code class="language-bash">wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
 
-[Peer]
-PublicKey = &lt;SERVER-PUBKEY&gt;
-Endpoint = &lt;SERVER-IP&gt;:51820
-AllowedIPs = 10.0.0.0/24
-PersistentKeepalive = 20
-</code></pre>
-<p>(Опционально) Конфиг маршрутизации всего трафика</p>
-<pre><code>[Interface]
-PrivateKey = &lt;PEER_2_PRIVATE_KEY&gt;
-Address = 10.0.0.12/32
-DNS = 8.8.8.8
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
 
-[Peer]
-PublicKey = &lt;SERVER-PUBKEY&gt;
-Endpoint = &lt;SERVER-IP&gt;:51820
-AllowedIPs = 0.0.0.0/0
-PersistentKeepalive = 20
-</code></pre>
-<h3 id="добавление-клиента-на-сервер-5">Добавление клиента на сервер</h3>
-<pre><code class="language-bash">sudo wg set wg0 peer DESKTOP_CLIENT_PUBLIC_KEY allowed-ips 10.0.0.2
-</code></pre>
-<h3 id="включение-клиента-+-просмотр-статуса-6">Включение клиента + просмотр статуса</h3>
-<pre><code class="language-bash">sudo wg-quick up wg0
-sudo wg
-</code></pre>
-<p>(Опционально) Подключение при старте</p>
-<pre><code class="language-bash">sudo systemctl enable wg-quick@wg0
-</code></pre>
-<h2 id="для-android-и-ios-шаринг-конфига-7">Для android и iOS шаринг конфига</h2>
-<pre><code class="language-bash"># installation
-apt install qrencode
+sudo apt update
 
-qrencode -t ansiutf8 &lt; iphone.conf
+sudo apt-get install -y mongodb-org
+</code></pre>
+<h2 id="пример-правки-конфига-/etc/mongod.conf-2">Пример правки конфига /etc/mongod.conf</h2>
+<pre><code>storage:
+  dbPath: /root/DATA/mongodb
+  journal:
+    enabled: true
+
+systemLog:
+  destination: file
+  logAppend: true
+  path: /root/DATA/mongodb/mongod.log
+
+net:
+  port: 27017
+  bindIp: 0.0.0.0
+  
+replication:
+   replSetName: "rs0"
+</code></pre>
+<h3 id="правим-сервис-и-выставляем-запуск-от-рута-3">Правим сервис и выставляем запуск от рута</h3>
+<pre><code class="language-bash">sudo nano /lib/systemd/system/mongod.service
+</code></pre>
+<p>Это конечно не совсем правильно, но меньше гемора с правами</p>
+<h3 id="запускаем-и-добавляем-в-автозагрузки-+-проверям-статус-4">Запускаем и добавляем в автозагрузки + проверям статус</h3>
+<pre><code class="language-bash">sudo systemctl enable mongod.service 
+sudo systemctl start mongod.service 
+sudo systemctl status mongod.service
+</code></pre>
+<h2 id="инициализация-(только-на-одном-из-инстансов)-5">Инициализация (только на одном из инстансов)</h2>
+<pre><code class="language-js">rs.initiate( {
+   _id : "rs0",
+   members: [
+      { _id: 0, host: "10.0.0.5:27017" },
+      { _id: 1, host: "10.0.0.3:27017" },
+      { _id: 2, host: "10.0.0.4:27017" }
+   ]
+})
+</code></pre>
+<h3 id="добавление-новой-реплики,-если-будет-необходимость-6">Добавление новой реплики, если будет необходимость</h3>
+<pre><code class="language-js">rs.add( { host: "10.0.0.5:27017" } )
+</code></pre>
+<h2 id="дополнительные-команды-7">Дополнительные команды</h2>
+<pre><code class="language-js">rs.conf()
+
+rs.status()
+</code></pre>
+<h2 id="пример-для-использования-8">Пример для использования</h2>
+<p>Если не указать все айпишники реплик, то мастер переключится в SECONDARY и будет запрет на запись</p>
+<pre><code class="language-url">mongodb://10.0.0.2:27017,10.0.0.3:27017,10.0.0.4:27017
 </code></pre>
 
             </div>
@@ -231,32 +199,36 @@ qrencode -t ansiutf8 &lt; iphone.conf
                     <p class='page-nav-header'>On this page</p>
                     <ul>
                         
-                            <li class='page-nav-level-1'>
-                                <a href='#установка-wireguard-1'>Установка wireguard</a>
-                            </li>
-                        
-                            <li class='page-nav-level-1'>
-                                <a href='#конфигурация-wireguard-для-сервера-2'>Конфигурация wireguard для сервера</a>
+                            <li class='page-nav-level-2'>
+                                <a href='#установка-1'>Установка</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#проверяем-3'>Проверяем</a>
-                            </li>
-                        
-                            <li class='page-nav-level-1'>
-                                <a href='#конфигурация-для-клиента-4'>Конфигурация для клиента</a>
+                                <a href='#пример-правки-конфига-/etc/mongod.conf-2'>Пример правки конфига /etc/mongod.conf</a>
                             </li>
                         
                             <li class='page-nav-level-3'>
-                                <a href='#добавление-клиента-на-сервер-5'>Добавление клиента на сервер</a>
+                                <a href='#правим-сервис-и-выставляем-запуск-от-рута-3'>Правим сервис и выставляем запуск от рута</a>
                             </li>
                         
                             <li class='page-nav-level-3'>
-                                <a href='#включение-клиента-+-просмотр-статуса-6'>Включение клиента + просмотр статуса</a>
+                                <a href='#запускаем-и-добавляем-в-автозагрузки-+-проверям-статус-4'>Запускаем и добавляем в автозагрузки + проверям статус</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#для-android-и-ios-шаринг-конфига-7'>Для android и iOS шаринг конфига</a>
+                                <a href='#инициализация-(только-на-одном-из-инстансов)-5'>Инициализация (только на одном из инстансов)</a>
+                            </li>
+                        
+                            <li class='page-nav-level-3'>
+                                <a href='#добавление-новой-реплики,-если-будет-необходимость-6'>Добавление новой реплики, если будет необходимость</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#дополнительные-команды-7'>Дополнительные команды</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#пример-для-использования-8'>Пример для использования</a>
                             </li>
                         
                     </ul>
