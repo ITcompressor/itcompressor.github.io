@@ -24,5 +24,10 @@ doctave build --release
 gh-pages -d site
 ```
 
+# Дев запуск
+```bash
+doctave serve
+```
+
 # Настройка github
 Переходим в настройки (https://github.com/ITcompressor/itcompressor.github.io/settings/pages) и указываем ветку `gh-pages`
