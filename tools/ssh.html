@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>mongo_replica_set</title>
+    <title>ssh</title>
     <meta name="description" content="Documentation for ITcompressor">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -74,7 +74,7 @@
             
                 <ul>
     
-        <li><a class="active" href="/db/mongo_replica_set">mongo_replica_set</a></li>
+        <li><a href="/db/mongo_replica_set">mongo_replica_set</a></li>
         
     
 </ul>
@@ -102,7 +102,7 @@
         <li><a href="/tools/archives">archives</a></li>
         
     
-        <li><a href="/tools/ssh">ssh</a></li>
+        <li><a class="active" href="/tools/ssh">ssh</a></li>
         
     
         <li><a href="/tools/vim">vim</a></li>
@@ -126,74 +126,73 @@
 
             </div>
             <div class='content'>
-                <p>Настройка mongo replica set</p>
-<p><strong>tags</strong> <code>mongo</code> <code>mongodb</code> <code>replication</code>
-<strong>date</strong> 2021-11-15 23:32
-<strong>links</strong> <a href="https://docs.mongodb.com/manual/tutorial/deploy-replica-set/">official doc</a> |</p>
-<blockquote>
-<p>Replica Set — это кластер серверов MongoDB, реализующий механизм репликации master-slave и автоматическое переключение между ними. Это рекомендуемый механизм репликации от разработчиков MongoDB. ... Primary — основной сервер mongoDB.</p>
-</blockquote>
-<blockquote>
-<p>Ставил 5ую монгу на ubuntu server. Для примера айпишники: 10.0.0.2, 10.0.0.3, 10.0.0.4 (and etc) и кастомный путь 
-/root/DATA/mongodb</p>
-</blockquote>
-<h2 id="установка-1">Установка</h2>
-<pre><code class="language-bash">wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
-
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
-
-sudo apt update
-
-sudo apt-get install -y mongodb-org
+                <p>Заметка по ssh</p>
+<p><strong>tags</strong> <code>chmod</code> <code>generate ssh</code> <code>scp</code> <code>tunel</code> <code>forwarding</code> <code>port</code>
+<strong>time</strong> 2021-11-21 01:17
+<strong>links</strong> <a href="https://www.cyberciti.biz/faq/unix-linux-execute-command-using-ssh/">Run / Execute Command Using SSH</a> |</p>
+<h2 id="подключение-1">Подключение</h2>
+<p>-p - выбор порта, по умолчанию 22</p>
+<pre><code class="language-bash">ssh -p 2222 cs@10.0.0.5
 </code></pre>
-<h2 id="пример-правки-конфига-/etc/mongod.conf-2">Пример правки конфига /etc/mongod.conf</h2>
-<pre><code>storage:
-  dbPath: /root/DATA/mongodb
-  journal:
-    enabled: true
-
-systemLog:
-  destination: file
-  logAppend: true
-  path: /root/DATA/mongodb/mongod.log
-
-net:
-  port: 27017
-  bindIp: 0.0.0.0
-  
-replication:
-   replSetName: "rs0"
+<h2 id="port-forwarding-2">Port forwarding</h2>
+<pre><code class="language-bash">ssh -L 27017:localhost:27017 qwer@next-way.by
 </code></pre>
-<h3 id="правим-сервис-и-выставляем-запуск-от-рута-3">Правим сервис и выставляем запуск от рута</h3>
-<pre><code class="language-bash">sudo nano /lib/systemd/system/mongod.service
+<h2 id="скачивание-файлов-3">Скачивание файлов</h2>
+<pre><code class="language-bash">scp cs@10.0.0.5:/home/cs/foobar.txt /home/cs/foobar.txt
 </code></pre>
-<p>Это конечно не совсем правильно, но меньше гемора с правами</p>
-<h3 id="запускаем-и-добавляем-в-автозагрузки-+-проверям-статус-4">Запускаем и добавляем в автозагрузки + проверям статус</h3>
-<pre><code class="language-bash">sudo systemctl enable mongod.service 
-sudo systemctl start mongod.service 
-sudo systemctl status mongod.service
+<p>или</p>
+<pre><code class="language-bash">scp cs@10.0.0.5:~/foobar.txt .
 </code></pre>
-<h2 id="инициализация-(только-на-одном-из-инстансов)-5">Инициализация (только на одном из инстансов)</h2>
-<pre><code class="language-js">rs.initiate( {
-   _id : "rs0",
-   members: [
-      { _id: 0, host: "10.0.0.2:27017" },
-      { _id: 1, host: "10.0.0.3:27017" },
-      { _id: 2, host: "10.0.0.4:27017" }
-   ]
-})
+<h2 id="скачивание-большого-количества-файлов-4">Скачивание большого количества файлов</h2>
+<pre><code class="language-bash">scp cs@10.0.0.5:'/etc/nginx/sites-enabled/*' ./
 </code></pre>
-<h3 id="добавление-новой-реплики,-если-будет-необходимость-6">Добавление новой реплики, если будет необходимость</h3>
-<pre><code class="language-js">rs.add( { host: "10.0.0.5:27017" } )
+<h2 id="загрузка-файла(ов)-на-сервер-5">Загрузка файла(ов) на сервер</h2>
+<p>-P - порт, по умолчанию 22</p>
+<pre><code class="language-bash">scp .ssh/id_rsa* -P 2223 cs@10.0.0.5:~/.ssh/
 </code></pre>
-<h2 id="дополнительные-команды-7">Дополнительные команды</h2>
-<pre><code class="language-js">rs.conf()
-
-rs.status()
+<p>или</p>
+<pre><code class="language-bash">scp -P2222 nextcloud-20.0.2.zip qwer@home.next-way.by:~/.
 </code></pre>
-<h2 id="пример-для-использования-8">Пример для использования</h2>
-<p>Если не указать все айпишники реплик, то если мастер переключится в SECONDARY - будет запрет на запись</p>
-<pre><code class="language-url">mongodb://10.0.0.2:27017,10.0.0.3:27017,10.0.0.4:27017
+<h2 id="копирование-публичного-ключа-на-сервер-6">Копирование публичного ключа на сервер</h2>
+<pre><code class="language-bash">ssh-copy-id cs@10.0.0.5
+</code></pre>
+<p>или</p>
+<pre><code class="language-bash">cat ~/.ssh/id_rsa.pub | ssh cs@10.0.0.5 "cat &gt;&gt; /home/cs/.ssh/authorized_keys"
+</code></pre>
+<h3 id="для-windows-7">для windows</h3>
+<pre><code class="language-bash">cat ~/.ssh/id_rsa.pub | ssh admin@10.0.0.5 "cat &gt;&gt; C:\Users\Admin\.ssh\authorized_keys"
+</code></pre>
+<h2 id="генерация-ключей-8">Генерация ключей</h2>
+<pre><code class="language-bash">ssh-keygen -t rsa -b 4096 -C "cs@next-way.by"
+</code></pre>
+<h3 id="фикс-прав-для-ключей-(если-выбивает-ошибку)-9">Фикс прав для ключей (если выбивает ошибку)</h3>
+<pre><code class="language-bash">chmod 644 ~/.ssh/authorized_keys
+chmod 600 .ssh/ -R	
+</code></pre>
+<h2 id="запуск-команд-из-под-рута-10">Запуск команд из под рута</h2>
+<pre><code class="language-bash">## sudo syntax ##
+ssh -t cs@10.0.0.5 sudo command
+ssh -t cs@10.0.0.5 'sudo command1 arg1 arg2'
+ 
+## su syntax ##
+ssh cs@10.0.0.5 su -c "/path/to/command1 arg1 arg2"
+ 
+# RHEL/CentOS specific #
+ssh cs@10.0.0.5 su --session-command="/path/to/command1 arg1 arg2"
+ssh cs@10.0.0.5 su --session-command="/sbin/service httpd restart"
+</code></pre>
+<h2 id="запуск-скрипта-на-сервере-11">Запуск скрипта на сервере</h2>
+<pre><code class="language-bash">ssh cs@10.0.0.5 &lt; commands.txt
+</code></pre>
+<h2 id="правильная-конфигурация-ssh-сервера-12">Правильная конфигурация ssh сервера</h2>
+<p>Правим путь</p>
+<pre><code class="language-bash">sudo nano /etc/ssh/sshd_config
+</code></pre>
+<p>Отключаем подключение по паролю</p>
+<pre><code class="language-ssh">PasswordAuthentication no
+</code></pre>
+<p>Рестартим</p>
+<pre><code class="language-bash">sudo systemctl restart ssh
 </code></pre>
 
             </div>
@@ -203,35 +202,51 @@ rs.status()
                     <ul>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#установка-1'>Установка</a>
+                                <a href='#подключение-1'>Подключение</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#пример-правки-конфига-/etc/mongod.conf-2'>Пример правки конфига /etc/mongod.conf</a>
+                                <a href='#port-forwarding-2'>Port forwarding</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#скачивание-файлов-3'>Скачивание файлов</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#скачивание-большого-количества-файлов-4'>Скачивание большого количества файлов</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#загрузка-файла(ов)-на-сервер-5'>Загрузка файла(ов) на сервер</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#копирование-публичного-ключа-на-сервер-6'>Копирование публичного ключа на сервер</a>
                             </li>
                         
                             <li class='page-nav-level-3'>
-                                <a href='#правим-сервис-и-выставляем-запуск-от-рута-3'>Правим сервис и выставляем запуск от рута</a>
+                                <a href='#для-windows-7'>для windows</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#генерация-ключей-8'>Генерация ключей</a>
                             </li>
                         
                             <li class='page-nav-level-3'>
-                                <a href='#запускаем-и-добавляем-в-автозагрузки-+-проверям-статус-4'>Запускаем и добавляем в автозагрузки + проверям статус</a>
+                                <a href='#фикс-прав-для-ключей-(если-выбивает-ошибку)-9'>Фикс прав для ключей (если выбивает ошибку)</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#инициализация-(только-на-одном-из-инстансов)-5'>Инициализация (только на одном из инстансов)</a>
-                            </li>
-                        
-                            <li class='page-nav-level-3'>
-                                <a href='#добавление-новой-реплики,-если-будет-необходимость-6'>Добавление новой реплики, если будет необходимость</a>
+                                <a href='#запуск-команд-из-под-рута-10'>Запуск команд из под рута</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#дополнительные-команды-7'>Дополнительные команды</a>
+                                <a href='#запуск-скрипта-на-сервере-11'>Запуск скрипта на сервере</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#пример-для-использования-8'>Пример для использования</a>
+                                <a href='#правильная-конфигурация-ssh-сервера-12'>Правильная конфигурация ssh сервера</a>
                             </li>
                         
                     </ul>
