@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>ssh</title>
+    <title>glassfish</title>
     <meta name="description" content="Documentation for ITcompressor">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -85,7 +85,7 @@
             
                 <ul>
     
-        <li><a href="/server/glassfish">glassfish</a></li>
+        <li><a class="active" href="/server/glassfish">glassfish</a></li>
         
     
 </ul>
@@ -113,7 +113,7 @@
         <li><a href="/tools/archives">archives</a></li>
         
     
-        <li><a class="active" href="/tools/ssh">ssh</a></li>
+        <li><a href="/tools/ssh">ssh</a></li>
         
     
         <li><a href="/tools/vim">vim</a></li>
@@ -137,73 +137,42 @@
 
             </div>
             <div class='content'>
-                <p>Заметка по ssh</p>
-<p><strong>tags</strong> <code>chmod</code> <code>generate ssh</code> <code>scp</code> <code>tunel</code> <code>forwarding</code> <code>port</code>
-<strong>time</strong> 2021-11-21 01:17
-<strong>links</strong> <a href="https://www.cyberciti.biz/faq/unix-linux-execute-command-using-ssh/">Run / Execute Command Using SSH</a> |</p>
-<h2 id="подключение-1">Подключение</h2>
-<p>-p - выбор порта, по умолчанию 22</p>
-<pre><code class="language-bash">ssh -p 2222 cs@10.0.0.5
+                <p>Glassfish (5)</p>
+<p><strong>tags</strong> <code>web</code> <code>gf3</code> <code>gf5</code> <code>java ee</code> <code>server</code> <code>gf</code>
+<strong>date</strong> 2020-12-29 20:22
+<strong>links</strong> <a href="https://docs.oracle.com/cd/E19798-01/821-1757/6nmni99aj/index.html">oracle docs</a> |</p>
+<p>#№ Запуск домена\веб-сервера в дебаг моде</p>
+<pre><code class="language-bash">as-install/bin/asadmin start-domain --debug domain1
 </code></pre>
-<h2 id="port-forwarding-2">Port forwarding</h2>
-<pre><code class="language-bash">ssh -L 27017:localhost:27017 qwer@next-way.by
+<p>#№ Остановка домена\веб-сервера</p>
+<pre><code class="language-bash">as-install/bin/asadmin stop-domain domain1
 </code></pre>
-<h2 id="скачивание-файлов-3">Скачивание файлов</h2>
-<pre><code class="language-bash">scp cs@10.0.0.5:/home/cs/foobar.txt /home/cs/foobar.txt
+<h2 id="развернуть-application.war-1">Развернуть application.war</h2>
+<pre><code class="language-bash">as-install/bin/asadmin deploy application.war
 </code></pre>
-<p>или</p>
-<pre><code class="language-bash">scp cs@10.0.0.5:~/foobar.txt .
+<h2 id="развернуть-application.war-с-кастомным-рутом-2">Развернуть application.war с кастомным рутом</h2>
+<pre><code class="language-bash">as-install/bin/asadmin deploy --contextroot "/my_path" application.war
 </code></pre>
-<h2 id="скачивание-большого-количества-файлов-4">Скачивание большого количества файлов</h2>
-<pre><code class="language-bash">scp cs@10.0.0.5:'/etc/nginx/sites-enabled/*' ./
+<h2 id="список-задеплоенный-приложений-3">Список задеплоенный приложений</h2>
+<pre><code class="language-bash">as-install/bin/asadmin list-applications
 </code></pre>
-<h2 id="загрузка-файла(ов)-на-сервер-5">Загрузка файла(ов) на сервер</h2>
-<p>-P - порт, по умолчанию 22</p>
-<pre><code class="language-bash">scp .ssh/id_rsa* -P 2223 cs@10.0.0.5:~/.ssh/
+<h2 id="">"Undeploy" application.war</h2>
+<pre><code class="language-bash">as-install/bin/asadmin undeploy application.war
 </code></pre>
-<p>или</p>
-<pre><code class="language-bash">scp -P2222 nextcloud-20.0.2.zip qwer@home.next-way.by:~/.
+<h2 id="установка-пароля-для-админ-панели-5">Установка пароля для админ панели</h2>
+<pre><code class="language-bash">as-install/bin/asadmin change-admin-password
 </code></pre>
-<h2 id="копирование-публичного-ключа-на-сервер-6">Копирование публичного ключа на сервер</h2>
-<pre><code class="language-bash">ssh-copy-id cs@10.0.0.5
+<h2 id="включить-админ-панель-для-внешних-подключений-6">Включить админ панель для внешних подключений</h2>
+<pre><code class="language-bash">as-install/bin/asadmin enable-secure-admin
 </code></pre>
-<p>или</p>
-<pre><code class="language-bash">cat ~/.ssh/id_rsa.pub | ssh cs@10.0.0.5 "cat &gt;&gt; /home/cs/.ssh/authorized_keys"
+<h2 id="путь-к-админской-панели-7">Путь к админской панели</h2>
+<pre><code class="language-url">http://localhost:4848
 </code></pre>
-<h3 id="для-windows-7">для windows</h3>
-<pre><code class="language-bash">cat ~/.ssh/id_rsa.pub | ssh admin@10.0.0.5 "cat &gt;&gt; C:\Users\Admin\.ssh\authorized_keys"
+<h2 id="путь-к-автоматическому-развертыванию-веб-приложений-8">Путь к автоматическому развертыванию веб-приложений</h2>
+<pre><code class="language-bash">as-install/domains/domain1/autodeploy
 </code></pre>
-<h2 id="генерация-ключей-8">Генерация ключей</h2>
-<pre><code class="language-bash">ssh-keygen -t rsa -b 4096 -C "cs@next-way.by"
-</code></pre>
-<h3 id="фикс-прав-для-ключей-(если-выбивает-ошибку)-9">Фикс прав для ключей (если выбивает ошибку)</h3>
-<pre><code class="language-bash">chmod 644 ~/.ssh/authorized_keys
-chmod 600 .ssh/ -R	
-</code></pre>
-<h2 id="запуск-команд-из-под-рута-10">Запуск команд из под рута</h2>
-<pre><code class="language-bash">## sudo syntax ##
-ssh -t cs@10.0.0.5 sudo command
-ssh -t cs@10.0.0.5 'sudo command1 arg1 arg2'
- 
-## su syntax ##
-ssh cs@10.0.0.5 su -c "/path/to/command1 arg1 arg2"
- 
-# RHEL/CentOS specific #
-ssh cs@10.0.0.5 su --session-command="/path/to/command1 arg1 arg2"
-ssh cs@10.0.0.5 su --session-command="/sbin/service httpd restart"
-</code></pre>
-<h2 id="запуск-скрипта-на-сервере-11">Запуск скрипта на сервере</h2>
-<pre><code class="language-bash">ssh cs@10.0.0.5 &lt; commands.txt
-</code></pre>
-<h2 id="правильная-конфигурация-ssh-сервера-12">Правильная конфигурация ssh сервера</h2>
-<p>Правим путь</p>
-<pre><code class="language-bash">sudo nano /etc/ssh/sshd_config
-</code></pre>
-<p>Отключаем подключение по паролю</p>
-<pre><code class="language-ssh">PasswordAuthentication no
-</code></pre>
-<p>Рестартим</p>
-<pre><code class="language-bash">sudo systemctl restart ssh
+<h2 id="путь-к-конфигурации-энва,-например-для-изменения-jvm_home-9">Путь к конфигурации энва, например для изменения JVM_HOME</h2>
+<pre><code class="language-bash">as-install/config/asenv.conf
 </code></pre>
 
             </div>
@@ -213,51 +182,39 @@ ssh cs@10.0.0.5 su --session-command="/sbin/service httpd restart"
                     <ul>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#подключение-1'>Подключение</a>
+                                <a href='#развернуть-application.war-1'>Развернуть application.war</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#port-forwarding-2'>Port forwarding</a>
+                                <a href='#развернуть-application.war-с-кастомным-рутом-2'>Развернуть application.war с кастомным рутом</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#скачивание-файлов-3'>Скачивание файлов</a>
+                                <a href='#список-задеплоенный-приложений-3'>Список задеплоенный приложений</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#скачивание-большого-количества-файлов-4'>Скачивание большого количества файлов</a>
+                                <a href='#&quot;undeploy&quot;-application.war-4'>&quot;Undeploy&quot; application.war</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#загрузка-файла(ов)-на-сервер-5'>Загрузка файла(ов) на сервер</a>
+                                <a href='#установка-пароля-для-админ-панели-5'>Установка пароля для админ панели</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#копирование-публичного-ключа-на-сервер-6'>Копирование публичного ключа на сервер</a>
-                            </li>
-                        
-                            <li class='page-nav-level-3'>
-                                <a href='#для-windows-7'>для windows</a>
+                                <a href='#включить-админ-панель-для-внешних-подключений-6'>Включить админ панель для внешних подключений</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#генерация-ключей-8'>Генерация ключей</a>
-                            </li>
-                        
-                            <li class='page-nav-level-3'>
-                                <a href='#фикс-прав-для-ключей-(если-выбивает-ошибку)-9'>Фикс прав для ключей (если выбивает ошибку)</a>
+                                <a href='#путь-к-админской-панели-7'>Путь к админской панели</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#запуск-команд-из-под-рута-10'>Запуск команд из под рута</a>
+                                <a href='#путь-к-автоматическому-развертыванию-веб-приложений-8'>Путь к автоматическому развертыванию веб-приложений</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#запуск-скрипта-на-сервере-11'>Запуск скрипта на сервере</a>
-                            </li>
-                        
-                            <li class='page-nav-level-2'>
-                                <a href='#правильная-конфигурация-ssh-сервера-12'>Правильная конфигурация ssh сервера</a>
+                                <a href='#путь-к-конфигурации-энва,-например-для-изменения-jvm_home-9'>Путь к конфигурации энва, например для изменения JVM_HOME</a>
                             </li>
                         
                     </ul>

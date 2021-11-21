@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>mongo_replica_set</title>
+    <title>server</title>
     <meta name="description" content="Documentation for ITcompressor">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -74,14 +74,14 @@
             
                 <ul>
     
-        <li><a class="active" href="/db/mongo_replica_set">mongo_replica_set</a></li>
+        <li><a href="/db/mongo_replica_set">mongo_replica_set</a></li>
         
     
 </ul>
 
             
         
-            <li><a href="/server">server</a></li>
+            <li><a class="active" href="/server">server</a></li>
             
                 <ul>
     
@@ -137,75 +137,12 @@
 
             </div>
             <div class='content'>
-                <p>Настройка mongo replica set</p>
-<p><strong>tags</strong> <code>mongo</code> <code>mongodb</code> <code>replication</code>
-<strong>date</strong> 2021-11-15 23:32
-<strong>links</strong> <a href="https://docs.mongodb.com/manual/tutorial/deploy-replica-set/">official doc</a> |</p>
-<blockquote>
-<p>Replica Set — это кластер серверов MongoDB, реализующий механизм репликации master-slave и автоматическое переключение между ними. Это рекомендуемый механизм репликации от разработчиков MongoDB. ... Primary — основной сервер mongoDB.</p>
-</blockquote>
-<blockquote>
-<p>Ставил 5ую монгу на ubuntu server. Для примера айпишники: 10.0.0.2, 10.0.0.3, 10.0.0.4 (and etc) и кастомный путь 
-/root/DATA/mongodb</p>
-</blockquote>
-<h2 id="установка-1">Установка</h2>
-<pre><code class="language-bash">wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
-
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
-
-sudo apt update
-
-sudo apt-get install -y mongodb-org
-</code></pre>
-<h2 id="пример-правки-конфига-/etc/mongod.conf-2">Пример правки конфига /etc/mongod.conf</h2>
-<pre><code>storage:
-  dbPath: /root/DATA/mongodb
-  journal:
-    enabled: true
-
-systemLog:
-  destination: file
-  logAppend: true
-  path: /root/DATA/mongodb/mongod.log
-
-net:
-  port: 27017
-  bindIp: 0.0.0.0
-  
-replication:
-   replSetName: "rs0"
-</code></pre>
-<h3 id="правим-сервис-и-выставляем-запуск-от-рута-3">Правим сервис и выставляем запуск от рута</h3>
-<pre><code class="language-bash">sudo nano /lib/systemd/system/mongod.service
-</code></pre>
-<p>Это конечно не совсем правильно, но меньше гемора с правами</p>
-<h3 id="запускаем-и-добавляем-в-автозагрузки-+-проверям-статус-4">Запускаем и добавляем в автозагрузки + проверям статус</h3>
-<pre><code class="language-bash">sudo systemctl enable mongod.service 
-sudo systemctl start mongod.service 
-sudo systemctl status mongod.service
-</code></pre>
-<h2 id="инициализация-(только-на-одном-из-инстансов)-5">Инициализация (только на одном из инстансов)</h2>
-<pre><code class="language-js">rs.initiate( {
-   _id : "rs0",
-   members: [
-      { _id: 0, host: "10.0.0.2:27017" },
-      { _id: 1, host: "10.0.0.3:27017" },
-      { _id: 2, host: "10.0.0.4:27017" }
-   ]
-})
-</code></pre>
-<h3 id="добавление-новой-реплики,-если-будет-необходимость-6">Добавление новой реплики, если будет необходимость</h3>
-<pre><code class="language-js">rs.add( { host: "10.0.0.5:27017" } )
-</code></pre>
-<h2 id="дополнительные-команды-7">Дополнительные команды</h2>
-<pre><code class="language-js">rs.conf()
-
-rs.status()
-</code></pre>
-<h2 id="пример-для-использования-8">Пример для использования</h2>
-<p>Если не указать все айпишники реплик, то если мастер переключится в SECONDARY - будет запрет на запись</p>
-<pre><code class="language-url">mongodb://10.0.0.2:27017,10.0.0.3:27017,10.0.0.4:27017
-</code></pre>
+                <h1 id="index-of-server-1">Index of server</h1>
+<p>This page was generated automatically by Doctave, because the directory <code>docs/server</code> did not contain an index <code>README.md</code> file. You can customize this page by creating one yourself.</p>
+<h2 id="pages-2">Pages</h2>
+<ul>
+<li><a href="/server/glassfish">glassfish</a></li>
+</ul>
 
             </div>
             <div class='sidebar-right'>
@@ -213,36 +150,12 @@ rs.status()
                     <p class='page-nav-header'>On this page</p>
                     <ul>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#установка-1'>Установка</a>
+                            <li class='page-nav-level-1'>
+                                <a href='#index-of-server-1'>Index of server</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#пример-правки-конфига-/etc/mongod.conf-2'>Пример правки конфига /etc/mongod.conf</a>
-                            </li>
-                        
-                            <li class='page-nav-level-3'>
-                                <a href='#правим-сервис-и-выставляем-запуск-от-рута-3'>Правим сервис и выставляем запуск от рута</a>
-                            </li>
-                        
-                            <li class='page-nav-level-3'>
-                                <a href='#запускаем-и-добавляем-в-автозагрузки-+-проверям-статус-4'>Запускаем и добавляем в автозагрузки + проверям статус</a>
-                            </li>
-                        
-                            <li class='page-nav-level-2'>
-                                <a href='#инициализация-(только-на-одном-из-инстансов)-5'>Инициализация (только на одном из инстансов)</a>
-                            </li>
-                        
-                            <li class='page-nav-level-3'>
-                                <a href='#добавление-новой-реплики,-если-будет-необходимость-6'>Добавление новой реплики, если будет необходимость</a>
-                            </li>
-                        
-                            <li class='page-nav-level-2'>
-                                <a href='#дополнительные-команды-7'>Дополнительные команды</a>
-                            </li>
-                        
-                            <li class='page-nav-level-2'>
-                                <a href='#пример-для-использования-8'>Пример для использования</a>
+                                <a href='#pages-2'>Pages</a>
                             </li>
                         
                     </ul>
