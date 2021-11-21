@@ -9,3 +9,4 @@
 |![vbox](/assets/img/vbox.png) |[Virtualbox](/soft/virtualbox)|VirtualBox (Oracle VM VirtualBox) — программный продукт виртуализации для операционных систем Windows, Linux, FreeBSD, macOS, Solaris/OpenSolaris, ReactOS, DOS и других.|
 |![vim](/assets/img/vim.png) |[vim](/tools/vim)|Vim (сокр. от Vi Improved, произносится «вим») — свободный текстовый редактор, созданный на основе более старого vi. Ныне это мощный текстовый редактор с полной свободой настройки и автоматизации, возможными благодаря расширениям и надстройкам. |
 |![zip](/assets/img/zip.jpeg) |[Работа с архивами через консоль](/tools/archives)||
+|![zip](/assets/img/glassfish.png) |[Glassfish (5)](/server/glassfish)|GlassFish — сервер приложений с открытым исходным кодом, реализующий спецификации Java EE, изначально разработанный Sun Microsystems. В настоящее время спонсируется корпорацией Oracle. Актуальная версия платформы называется Oracle GlassFish Server.|
