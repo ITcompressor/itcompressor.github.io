@@ -4,11 +4,11 @@ Glassfish (5)
 **date** 2020-12-29 20:22
 **links** [oracle docs](https://docs.oracle.com/cd/E19798-01/821-1757/6nmni99aj/index.html) |
 
-#№ Запуск домена\веб-сервера в дебаг моде
+## Запуск домена\веб-сервера в дебаг моде
 ```bash
 as-install/bin/asadmin start-domain --debug domain1
 ```
-#№ Остановка домена\веб-сервера
+## Остановка домена\веб-сервера
 ```bash
 as-install/bin/asadmin stop-domain domain1
 ```
