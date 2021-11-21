@@ -11,15 +11,15 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1637514757" media="screen" />
-    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1637514757" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1637514947" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1637514947" media="screen" />
 
-    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1637514757" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1637514947" media="screen" />
 
     
 
     <script>
-        var DOCTAVE_TIMESTAMP = "1637514757";
+        var DOCTAVE_TIMESTAMP = "1637514947";
         var BASE_PATH = "/";
         var color = localStorage.getItem('doctave-color')
 
@@ -141,37 +141,37 @@
 <p><strong>tags</strong> <code>web</code> <code>gf3</code> <code>gf5</code> <code>java ee</code> <code>server</code> <code>gf</code>
 <strong>date</strong> 2020-12-29 20:22
 <strong>links</strong> <a href="https://docs.oracle.com/cd/E19798-01/821-1757/6nmni99aj/index.html">oracle docs</a> |</p>
-<p>#№ Запуск домена\веб-сервера в дебаг моде</p>
+<h2 id="запуск-домена\веб-сервера-в-дебаг-моде-1">Запуск домена\веб-сервера в дебаг моде</h2>
 <pre><code class="language-bash">as-install/bin/asadmin start-domain --debug domain1
 </code></pre>
-<p>#№ Остановка домена\веб-сервера</p>
+<h2 id="остановка-домена\веб-сервера-2">Остановка домена\веб-сервера</h2>
 <pre><code class="language-bash">as-install/bin/asadmin stop-domain domain1
 </code></pre>
-<h2 id="развернуть-application.war-1">Развернуть application.war</h2>
+<h2 id="развернуть-application.war-3">Развернуть application.war</h2>
 <pre><code class="language-bash">as-install/bin/asadmin deploy application.war
 </code></pre>
-<h2 id="развернуть-application.war-с-кастомным-рутом-2">Развернуть application.war с кастомным рутом</h2>
+<h2 id="развернуть-application.war-с-кастомным-рутом-4">Развернуть application.war с кастомным рутом</h2>
 <pre><code class="language-bash">as-install/bin/asadmin deploy --contextroot "/my_path" application.war
 </code></pre>
-<h2 id="список-задеплоенный-приложений-3">Список задеплоенный приложений</h2>
+<h2 id="список-задеплоенный-приложений-5">Список задеплоенный приложений</h2>
 <pre><code class="language-bash">as-install/bin/asadmin list-applications
 </code></pre>
 <h2 id="">"Undeploy" application.war</h2>
 <pre><code class="language-bash">as-install/bin/asadmin undeploy application.war
 </code></pre>
-<h2 id="установка-пароля-для-админ-панели-5">Установка пароля для админ панели</h2>
+<h2 id="установка-пароля-для-админ-панели-7">Установка пароля для админ панели</h2>
 <pre><code class="language-bash">as-install/bin/asadmin change-admin-password
 </code></pre>
-<h2 id="включить-админ-панель-для-внешних-подключений-6">Включить админ панель для внешних подключений</h2>
+<h2 id="включить-админ-панель-для-внешних-подключений-8">Включить админ панель для внешних подключений</h2>
 <pre><code class="language-bash">as-install/bin/asadmin enable-secure-admin
 </code></pre>
-<h2 id="путь-к-админской-панели-7">Путь к админской панели</h2>
+<h2 id="путь-к-админской-панели-9">Путь к админской панели</h2>
 <pre><code class="language-url">http://localhost:4848
 </code></pre>
-<h2 id="путь-к-автоматическому-развертыванию-веб-приложений-8">Путь к автоматическому развертыванию веб-приложений</h2>
+<h2 id="путь-к-автоматическому-развертыванию-веб-приложений-10">Путь к автоматическому развертыванию веб-приложений</h2>
 <pre><code class="language-bash">as-install/domains/domain1/autodeploy
 </code></pre>
-<h2 id="путь-к-конфигурации-энва,-например-для-изменения-jvm_home-9">Путь к конфигурации энва, например для изменения JVM_HOME</h2>
+<h2 id="путь-к-конфигурации-энва,-например-для-изменения-jvm_home-11">Путь к конфигурации энва, например для изменения JVM_HOME</h2>
 <pre><code class="language-bash">as-install/config/asenv.conf
 </code></pre>
 
@@ -182,39 +182,47 @@
                     <ul>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#развернуть-application.war-1'>Развернуть application.war</a>
+                                <a href='#запуск-домена\веб-сервера-в-дебаг-моде-1'>Запуск домена\веб-сервера в дебаг моде</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#развернуть-application.war-с-кастомным-рутом-2'>Развернуть application.war с кастомным рутом</a>
+                                <a href='#остановка-домена\веб-сервера-2'>Остановка домена\веб-сервера</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#список-задеплоенный-приложений-3'>Список задеплоенный приложений</a>
+                                <a href='#развернуть-application.war-3'>Развернуть application.war</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#&quot;undeploy&quot;-application.war-4'>&quot;Undeploy&quot; application.war</a>
+                                <a href='#развернуть-application.war-с-кастомным-рутом-4'>Развернуть application.war с кастомным рутом</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#установка-пароля-для-админ-панели-5'>Установка пароля для админ панели</a>
+                                <a href='#список-задеплоенный-приложений-5'>Список задеплоенный приложений</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#включить-админ-панель-для-внешних-подключений-6'>Включить админ панель для внешних подключений</a>
+                                <a href='#&quot;undeploy&quot;-application.war-6'>&quot;Undeploy&quot; application.war</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#путь-к-админской-панели-7'>Путь к админской панели</a>
+                                <a href='#установка-пароля-для-админ-панели-7'>Установка пароля для админ панели</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#путь-к-автоматическому-развертыванию-веб-приложений-8'>Путь к автоматическому развертыванию веб-приложений</a>
+                                <a href='#включить-админ-панель-для-внешних-подключений-8'>Включить админ панель для внешних подключений</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#путь-к-конфигурации-энва,-например-для-изменения-jvm_home-9'>Путь к конфигурации энва, например для изменения JVM_HOME</a>
+                                <a href='#путь-к-админской-панели-9'>Путь к админской панели</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#путь-к-автоматическому-развертыванию-веб-приложений-10'>Путь к автоматическому развертыванию веб-приложений</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#путь-к-конфигурации-энва,-например-для-изменения-jvm_home-11'>Путь к конфигурации энва, например для изменения JVM_HOME</a>
                             </li>
                         
                     </ul>
@@ -230,10 +238,10 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="/assets/mermaid.js?v=1637514757"></script>
-    <script type="text/javascript" src="/assets/elasticlunr.js?v=1637514757"></script>
-    <script type="text/javascript" src="/assets/doctave-app.js?v=1637514757"></script>
-    <script type="text/javascript" src="/assets/prism.js?v=1637514757"></script>
+    <script type="text/javascript" src="/assets/mermaid.js?v=1637514947"></script>
+    <script type="text/javascript" src="/assets/elasticlunr.js?v=1637514947"></script>
+    <script type="text/javascript" src="/assets/doctave-app.js?v=1637514947"></script>
+    <script type="text/javascript" src="/assets/prism.js?v=1637514947"></script>
 </body>
 
 </html>
