@@ -1,0 +1,462 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>archlinux</title>
+    <meta name="description" content="Documentation for ITcompressor">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1637608971" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1637608971" media="screen" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1637608971" media="screen" />
+
+    
+
+    <script>
+        var DOCTAVE_TIMESTAMP = "1637608971";
+        var BASE_PATH = "/";
+        var color = localStorage.getItem('doctave-color')
+
+        if (color === 'dark') {
+            document.getElementsByTagName('html')[0].classList.remove('light');
+            document.getElementsByTagName('html')[0].classList.add('dark');
+        } else {
+            document.getElementsByTagName('html')[0].classList.remove('dark');
+            document.getElementsByTagName('html')[0].classList.add('light');
+        }
+    </script>
+
+    
+</head>
+
+<body>
+    <label for='menu-toggle-switch' class='menu-toggle-button'>
+        ☰
+    </label>
+    <input type="checkbox" id="menu-toggle-switch" value='0' />
+    <div class='page'>
+        <div class='header'>
+            <div class='logo'>
+                
+                    <a href="/">
+                        <img src="/favicon.ico" alt='ITcompressor logo'></img>
+                    </a>
+                
+                <h2 class='project-name'>
+                    <a href="/">
+                        ITcompressor
+                    </a>
+                </h2>
+            </div>
+            <div class='search'>
+                <form id='search-form'>
+    <input type='text' id='search-box' autocomplete="off" placeholder="Search..."></input>
+    <span class='search-icon'>S</span>
+    <ul id='search-results'></ul>
+</form>
+
+            </div>
+            <div class='header-dummy-right'>
+            </div>
+        </div>
+        <div class='container'>
+            <div class='sidebar-left'>
+                <nav class='site-nav'>
+    <ul>
+        
+            <li><a href="/db">db</a></li>
+            
+                <ul>
+    
+        <li><a href="/db/mongo_replica_set">mongo_replica_set</a></li>
+        
+    
+</ul>
+
+            
+        
+            <li><a href="/guide">guide</a></li>
+            
+                <ul>
+    
+        <li><a class="active" href="/guide/archlinux">archlinux</a></li>
+        
+    
+</ul>
+
+            
+        
+            <li><a href="/server">server</a></li>
+            
+                <ul>
+    
+        <li><a href="/server/glassfish">glassfish</a></li>
+        
+    
+</ul>
+
+            
+        
+            <li><a href="/soft">soft</a></li>
+            
+                <ul>
+    
+        <li><a href="/soft/virtualbox">virtualbox</a></li>
+        
+    
+        <li><a href="/soft/wireguard">wireguard</a></li>
+        
+    
+</ul>
+
+            
+        
+            <li><a href="/tools">tools</a></li>
+            
+                <ul>
+    
+        <li><a href="/tools/archives">archives</a></li>
+        
+    
+        <li><a href="/tools/ssh">ssh</a></li>
+        
+    
+        <li><a href="/tools/vim">vim</a></li>
+        
+    
+</ul>
+
+            
+        
+    </ul>
+    <span id='light-dark-mode-switch'>
+        <svg xmlns="http://www.w3.org/2000/svg" id="dark-mode-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+        </svg>
+
+        <svg xmlns="http://www.w3.org/2000/svg" id="light-mode-icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
+        </svg>
+    </span>
+</nav>
+
+            </div>
+            <div class='content'>
+                <p>Гайд по установке archlinux</p>
+<p><strong>tags</strong> <code>best linux distro</code>
+<strong>time</strong> 2021-11-22 22:16
+<strong>links</strong> <a href="https://github.com/48d90782/archlinux_modern_luks_install">guide</a>
+| <a href="https://www.tecmint.com/arch-linux-installation-and-configuration-guide/">easy</a>
+| <a href="https://wiki.archlinux.org/index.php/Installation_Guide">The official installation guide</a> |</p>
+<blockquote>
+<p>Мой микрогайд по установке и настройке archlinux. Если вы новичек в linux, то лучше даже не пробовать.</p>
+</blockquote>
+<h2 id="0.-скачиваем-iso-образ-с-https://www.archlinux.org/-1">0. Скачиваем iso образ с https://www.archlinux.org/</h2>
+<h2 id="1.-создаем-загрузочную-флешку-2">1. Создаем загрузочную флешку</h2>
+<pre><code class="language-bash">dd if=archlinux.img of=/dev/sdX bs=16M &amp;&amp; sync # on linux
+</code></pre>
+<p>также можно через GUI с помощь. <a href="https://www.balena.io/etcher/">https://www.balena.io/etcher/</a></p>
+<h2 id="2.-подключаемся-к-точке-wifi-3">2. Подключаемся к точке wifi</h2>
+<pre><code class="language-bash"># 1
+iwctl
+# 2 
+station list
+# 3
+station &lt;generally wlan0&gt; connect &lt;wifi network name SSID&gt; 
+# -&gt; station wlan0 connect 0xdev
+# enter your password and exit (type exit -&gt; enter)
+</code></pre>
+<h2 id="3.-разбиваем-диски-(для-nvme-дисков-будет-примерно-такие-же-названия-из-коробки)-4">3. Разбиваем диски (для nvme дисков будет примерно такие же названия из коробки)</h2>
+<pre><code class="language-bash">cfdisk /dev/nvme0n1
+</code></pre>
+<h3 id="3.1.-512mb-efi-partition-5">3.1. 512MB EFI partition</h3>
+<p><code>/dev/nvme0n1p1</code></p>
+<h3 id="3.2.-остальное-пойдет-на-данные-6">3.2. Остальное пойдет на данные <code>/dev/nvme0n1p2</code></h3>
+<h2 id="4.-создание-efi-partition-7">4. Создание EFI partition</h2>
+<pre><code class="language-bash">mkfs.fat -F32 /dev/nvme0n1p1
+</code></pre>
+<h2 id="5.-шифруем-раздел-диска,-где-будут-храниться-данные-8">5. Шифруем раздел диска, где будут храниться данные</h2>
+<pre><code class="language-bash">cryptsetup -c aes-xts-plain64 --key-size 512 --hash sha512 --iter-time 3000 -y --use-random luksFormat /dev/nvme0n1p2
+cryptsetup luksOpen /dev/nvme0n1p2 luks
+</code></pre>
+<h2 id="6.-размечаем-зашифрованный-разде-9">6. Размечаем зашифрованный разде</h2>
+<pre><code class="language-bash">pvcreate /dev/mapper/luks
+vgcreate vg0 /dev/mapper/luks
+lvcreate --size 16G vg0 --name swap # (Если вы планируете использовать гибернацию, то память рассчитываем: Ram * 1.5)
+lvcreate -l +100%FREE vg0 --name root
+</code></pre>
+<h2 id="7.-форматируем-10">7. Форматируем</h2>
+<pre><code class="language-bash">mkfs.ext4 /dev/mapper/vg0-root  
+mkswap /dev/mapper/vg0-swap
+</code></pre>
+<h2 id="8.-монтируем-разделы-для-дальнейшей-установки-11">8. Монтируем разделы для дальнейшей установки</h2>
+<pre><code class="language-bash">mount /dev/mapper/vg0-root /mnt # /mnt - это место куда монитруем
+swapon /dev/mapper/vg0-swap # Не обязательно, но так можно проверить что все ок с swap
+mkdir /mnt/boot
+mount /dev/nvme0n1p1 /mnt/boot
+</code></pre>
+<h2 id="9.-устанавливаем-основные-пакеты-12">9. Устанавливаем основные пакеты</h2>
+<pre><code class="language-bash">pacstrap /mnt base base-devel zsh vim neovim git sudo efibootmgr iwd dhcpcd lvm2 linux linux-headers linux-firmware
+</code></pre>
+<h2 id="10.-устанавливаем-fstab-13">10. Устанавливаем fstab</h2>
+<pre><code class="language-bash">genfstab -pU /mnt &gt;&gt; /mnt/etc/fstab
+</code></pre>
+<h2 id="11.-добавлем-в-/tmp-a-ramdisk-(добавляем-эту-строчку-в-/mnt/etc/fstab)-14">11. Добавлем в /tmp a ramdisk (добавляем эту строчку в /mnt/etc/fstab)</h2>
+<pre><code>tmpfs	/tmp	tmpfs	defaults,noatime,mode=1777	0	0
+</code></pre>
+<h2 id="12.-инициализуем-систему-15">12. Инициализуем систему</h2>
+<pre><code class="language-bash">arch-chroot /mnt
+</code></pre>
+<h2 id="13.-настройка-времени-16">13. Настройка времени</h2>
+<pre><code class="language-bash">ln -s /usr/share/zoneinfo/Europe/Minsk /etc/localtime &lt;USE YOUR CITY!&gt;
+hwclock --systohc --utc
+</code></pre>
+<h2 id="14.-установка-hostname-17">14. Установка hostname</h2>
+<pre><code class="language-bash">echo &lt;YOU HOST NAME&gt; &gt; /etc/hostname
+</code></pre>
+<h2 id="15.-раскоментируем-строчку-с-нужной-нам-локалью-в-/etc/locale.gen-18">15. Раскоментируем строчку с нужной нам локалью в /etc/locale.gen</h2>
+<pre><code class="language-bash">vim /etc/locale.gen
+locale-gen
+localectl set-locale LANG=en_US.UTF-8
+echo LANG=en_US.UTF-8 &gt;&gt; /etc/locale.conf # (важно для GNOME)
+</code></pre>
+<h2 id="16.-устанавливаем-пароль-для-root-и-добавляем-пользователя-19">16. Устанавливаем пароль для root и добавляем пользователя</h2>
+<pre><code class="language-bash">passwd
+useradd -mg users -G wheel,storage,power -s /bin/zsh &lt;MYUSERNAME&gt; (or /bin/bash)
+passwd &lt;MYUSERNAME&gt;
+
+visudo -&gt; uncomment the following line --&gt; %wheel ALL=(ALL) ALL
+
+Defaults timestamp_type=global (use sudo globally)
+Defaults timestamp_timeout=15 (sudo timeout)
+</code></pre>
+<h2 id="17.-конфигурируем-mkinitcpio-с-модулями,-которые-нам-нужны-для-initrd-image--(порядок-важен!)-20">17. Конфигурируем mkinitcpio с модулями, которые нам нужны для initrd image  (ПОРЯДОК ВАЖЕН!)</h2>
+<pre><code class="language-bash">vim /etc/mkinitcpio.conf
+</code></pre>
+<p>Добавляем <code>ext4</code> в MODULES. Также если вы хотите чтобы блокировался экран при закрытия крышки ноутбука добавляем
+<code>i915</code> (Intel) в модули. Добавляем <code>encrypt</code> и <code>lvm2</code> в HOOKS до filesystems<br>
+Добавляем <code>resume</code> после <code>lvm2</code> (также <code>udev</code> должно быть до этого)<br>
+Мои <strong>hooks</strong> выгледят так: <code>HOOKS=(base udev autodetect modconf block encrypt lvm2 resume filesystems keyboard fsck)</code><br>
+И <strong>modules</strong> <code>MODULES=(i915)</code></p>
+<h2 id="18.-перегенерируем-initrd-image-21">18. Перегенерируем initrd image</h2>
+<pre><code class="language-bash">mkinitcpio -P
+</code></pre>
+<h2 id="19.-устанавливаем-systembootd-22">19. Устанавливаем systembootd</h2>
+<pre><code class="language-bash">bootctl --path=/boot install
+</code></pre>
+<h2 id="20.-создаем-loader.conf-23">20. Создаем loader.conf</h2>
+<pre><code class="language-bash">echo 'default arch' &gt;&gt; /boot/loader/loader.conf
+echo 'timeout 5' &gt;&gt; /boot/loader/loader.conf
+</code></pre>
+<h2 id="21.-создаем-arch.conf-24">21. Создаем arch.conf</h2>
+<pre><code class="language-bash">vim /boot/loader/entries/arch.conf
+</code></pre>
+<h2 id="22.-наполняем-arch.conf-25">22. Наполняем arch.conf</h2>
+<p>UUID - это UUID зашифрованного устройства (/dev/nvme0n1p2). Его также можно найти с помощью <code>blkid</code> команды</p>
+<pre><code>title Arch Linux
+linux /vmlinuz-linux
+initrd /initramfs-linux.img
+options cryptdevice=UUID=&lt;UUID&gt;:vg0 root=/dev/mapper/vg0-root resume=/dev/mapper/vg0-swap rw zswap.enabled=1
+</code></pre>
+<h2 id="23.-устанавливаем-de-26">23. Устанавливаем DE</h2>
+<h3 id="31.1-если-хотите-xfce4-27">31.1 Если хотите xfce4</h3>
+<pre><code class="language-bash">pacman -S gnome gnome-extra pulseaudio-bluetooth blueman bluez bluez-utils
+</code></pre>
+<h3 id="24.-добавляем-сервисы-в-автозагрузку-28">24. Добавляем сервисы в автозагрузку</h3>
+<pre><code class="language-bash">systemctl enable gdm bluetooth iwd dhcpcd NetworkManager
+</code></pre>
+<h2 id="25.-выходим-из-шела-29">25. Выходим из шела</h2>
+<pre><code class="language-bash">exit
+</code></pre>
+<h2 id="26.-отключаем-все-разделы-30">26. Отключаем все разделы</h2>
+<pre><code class="language-bash">umount -R /mnt
+swapoff -a
+</code></pre>
+<h2 id="27.-грузимся-(не-забудьте-отключить-все-левые-накопители/загрузочную-флешку)-31">27. Грузимся (не забудьте отключить все левые накопители/загрузочную флешку)</h2>
+<pre><code class="language-bash">reboot
+</code></pre>
+<h2 id="28.-установка-yay-32">28. Установка yay</h2>
+<pre><code class="language-bash">sudo pacman -S base-devel
+
+git clone https://aur.archlinux.org/yay.git
+
+cd yay
+
+makepkg -si
+</code></pre>
+<h2 id="29.-делаем-красивым-его-в-консоли-33">29. Делаем красивым его в консоли</h2>
+<pre><code class="language-bash">vim /etc/pacman.conf
+
+# Misc options
+UseSyslog
+Color
+#NoProgressBar
+CheckSpace
+VerbosePkgLists
+ParallelDownloads = 5
+</code></pre>
+
+            </div>
+            <div class='sidebar-right'>
+                <div class='page-nav' id='page-nav'>
+                    <p class='page-nav-header'>On this page</p>
+                    <ul>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#0.-скачиваем-iso-образ-с-https://www.archlinux.org/-1'>0. Скачиваем iso образ с https://www.archlinux.org/</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#1.-создаем-загрузочную-флешку-2'>1. Создаем загрузочную флешку</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#2.-подключаемся-к-точке-wifi-3'>2. Подключаемся к точке wifi</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#3.-разбиваем-диски-(для-nvme-дисков-будет-примерно-такие-же-названия-из-коробки)-4'>3. Разбиваем диски (для nvme дисков будет примерно такие же названия из коробки)</a>
+                            </li>
+                        
+                            <li class='page-nav-level-3'>
+                                <a href='#3.1.-512mb-efi-partition-5'>3.1. 512MB EFI partition</a>
+                            </li>
+                        
+                            <li class='page-nav-level-3'>
+                                <a href='#3.2.-остальное-пойдет-на-данные-6'>3.2. Остальное пойдет на данные </a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#4.-создание-efi-partition-7'>4. Создание EFI partition</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#5.-шифруем-раздел-диска,-где-будут-храниться-данные-8'>5. Шифруем раздел диска, где будут храниться данные</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#6.-размечаем-зашифрованный-разде-9'>6. Размечаем зашифрованный разде</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#7.-форматируем-10'>7. Форматируем</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#8.-монтируем-разделы-для-дальнейшей-установки-11'>8. Монтируем разделы для дальнейшей установки</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#9.-устанавливаем-основные-пакеты-12'>9. Устанавливаем основные пакеты</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#10.-устанавливаем-fstab-13'>10. Устанавливаем fstab</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#11.-добавлем-в-/tmp-a-ramdisk-(добавляем-эту-строчку-в-/mnt/etc/fstab)-14'>11. Добавлем в /tmp a ramdisk (добавляем эту строчку в /mnt/etc/fstab)</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#12.-инициализуем-систему-15'>12. Инициализуем систему</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#13.-настройка-времени-16'>13. Настройка времени</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#14.-установка-hostname-17'>14. Установка hostname</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#15.-раскоментируем-строчку-с-нужной-нам-локалью-в-/etc/locale.gen-18'>15. Раскоментируем строчку с нужной нам локалью в /etc/locale.gen</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#16.-устанавливаем-пароль-для-root-и-добавляем-пользователя-19'>16. Устанавливаем пароль для root и добавляем пользователя</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#17.-конфигурируем-mkinitcpio-с-модулями,-которые-нам-нужны-для-initrd-image--(порядок-важен!)-20'>17. Конфигурируем mkinitcpio с модулями, которые нам нужны для initrd image  (ПОРЯДОК ВАЖЕН!)</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#18.-перегенерируем-initrd-image-21'>18. Перегенерируем initrd image</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#19.-устанавливаем-systembootd-22'>19. Устанавливаем systembootd</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#20.-создаем-loader.conf-23'>20. Создаем loader.conf</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#21.-создаем-arch.conf-24'>21. Создаем arch.conf</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#22.-наполняем-arch.conf-25'>22. Наполняем arch.conf</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#23.-устанавливаем-de-26'>23. Устанавливаем DE</a>
+                            </li>
+                        
+                            <li class='page-nav-level-3'>
+                                <a href='#31.1-если-хотите-xfce4-27'>31.1 Если хотите xfce4</a>
+                            </li>
+                        
+                            <li class='page-nav-level-3'>
+                                <a href='#24.-добавляем-сервисы-в-автозагрузку-28'>24. Добавляем сервисы в автозагрузку</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#25.-выходим-из-шела-29'>25. Выходим из шела</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#26.-отключаем-все-разделы-30'>26. Отключаем все разделы</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#27.-грузимся-(не-забудьте-отключить-все-левые-накопители/загрузочную-флешку)-31'>27. Грузимся (не забудьте отключить все левые накопители/загрузочную флешку)</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#28.-установка-yay-32'>28. Установка yay</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#29.-делаем-красивым-его-в-консоли-33'>29. Делаем красивым его в консоли</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class='wave-container'>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                    <path fill-opacity="0.35" d="M0,192L60,213.3C120,235,240,277,360,277.3C480,277,600,235,720,192C840,149,960,107,1080,122.7C1200,139,1320,213,1380,250.7L1440,288L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+                    <path fill-opacity="0.5" d="M0,160L60,181.3C120,203,240,245,360,229.3C480,213,600,139,720,138.7C840,139,960,213,1080,229.3C1200,245,1320,203,1380,181.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+                    <path fill-opacity="0.2" d="M0,224L60,197.3C120,171,240,117,360,117.3C480,117,600,171,720,186.7C840,203,960,181,1080,186.7C1200,192,1320,224,1380,240L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+                </svg>
+                <p>Powered by <a href='https://cli.doctave.com' target='_blank'>Doctave</a></p>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/assets/mermaid.js?v=1637608971"></script>
+    <script type="text/javascript" src="/assets/elasticlunr.js?v=1637608971"></script>
+    <script type="text/javascript" src="/assets/doctave-app.js?v=1637608971"></script>
+    <script type="text/javascript" src="/assets/prism.js?v=1637608971"></script>
+</body>
+
+</html>
