@@ -190,8 +190,6 @@ options cryptdevice=UUID=<UUID>:vg0 root=/dev/mapper/vg0-root resume=/dev/mapper
 
 ## 23. Устанавливаем DE
 
-### 31.1 Если хотите xfce4
-
 ```bash
 pacman -S gnome gnome-extra pulseaudio-bluetooth blueman bluez bluez-utils
 ```
