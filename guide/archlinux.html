@@ -11,15 +11,15 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1637608971" media="screen" />
-    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1637608971" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1637659924" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1637659924" media="screen" />
 
-    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1637608971" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1637659924" media="screen" />
 
     
 
     <script>
-        var DOCTAVE_TIMESTAMP = "1637608971";
+        var DOCTAVE_TIMESTAMP = "1637659924";
         var BASE_PATH = "/";
         var color = localStorage.getItem('doctave-color')
 
@@ -243,7 +243,7 @@ Defaults timestamp_timeout=15 (sudo timeout)
 <code>i915</code> (Intel) в модули. Добавляем <code>encrypt</code> и <code>lvm2</code> в HOOKS до filesystems<br>
 Добавляем <code>resume</code> после <code>lvm2</code> (также <code>udev</code> должно быть до этого)<br>
 Мои <strong>hooks</strong> выгледят так: <code>HOOKS=(base udev autodetect modconf block encrypt lvm2 resume filesystems keyboard fsck)</code><br>
-И <strong>modules</strong> <code>MODULES=(i915)</code></p>
+И <strong>modules</strong> <code>MODULES=(i915 ext4)</code></p>
 <h2 id="18.-перегенерируем-initrd-image-21">18. Перегенерируем initrd image</h2>
 <pre><code class="language-bash">mkinitcpio -P
 </code></pre>
@@ -265,23 +265,22 @@ initrd /initramfs-linux.img
 options cryptdevice=UUID=&lt;UUID&gt;:vg0 root=/dev/mapper/vg0-root resume=/dev/mapper/vg0-swap rw zswap.enabled=1
 </code></pre>
 <h2 id="23.-устанавливаем-de-26">23. Устанавливаем DE</h2>
-<h3 id="31.1-если-хотите-xfce4-27">31.1 Если хотите xfce4</h3>
 <pre><code class="language-bash">pacman -S gnome gnome-extra pulseaudio-bluetooth blueman bluez bluez-utils
 </code></pre>
-<h3 id="24.-добавляем-сервисы-в-автозагрузку-28">24. Добавляем сервисы в автозагрузку</h3>
+<h3 id="24.-добавляем-сервисы-в-автозагрузку-27">24. Добавляем сервисы в автозагрузку</h3>
 <pre><code class="language-bash">systemctl enable gdm bluetooth iwd dhcpcd NetworkManager
 </code></pre>
-<h2 id="25.-выходим-из-шела-29">25. Выходим из шела</h2>
+<h2 id="25.-выходим-из-шела-28">25. Выходим из шела</h2>
 <pre><code class="language-bash">exit
 </code></pre>
-<h2 id="26.-отключаем-все-разделы-30">26. Отключаем все разделы</h2>
+<h2 id="26.-отключаем-все-разделы-29">26. Отключаем все разделы</h2>
 <pre><code class="language-bash">umount -R /mnt
 swapoff -a
 </code></pre>
-<h2 id="27.-грузимся-(не-забудьте-отключить-все-левые-накопители/загрузочную-флешку)-31">27. Грузимся (не забудьте отключить все левые накопители/загрузочную флешку)</h2>
+<h2 id="27.-грузимся-(не-забудьте-отключить-все-левые-накопители/загрузочную-флешку)-30">27. Грузимся (не забудьте отключить все левые накопители/загрузочную флешку)</h2>
 <pre><code class="language-bash">reboot
 </code></pre>
-<h2 id="28.-установка-yay-32">28. Установка yay</h2>
+<h2 id="28.-установка-yay-31">28. Установка yay</h2>
 <pre><code class="language-bash">sudo pacman -S base-devel
 
 git clone https://aur.archlinux.org/yay.git
@@ -290,7 +289,7 @@ cd yay
 
 makepkg -si
 </code></pre>
-<h2 id="29.-делаем-красивым-его-в-консоли-33">29. Делаем красивым его в консоли</h2>
+<h2 id="29.-делаем-красивым-его-в-консоли-32">29. Делаем красивым его в консоли</h2>
 <pre><code class="language-bash">vim /etc/pacman.conf
 
 # Misc options
@@ -413,31 +412,27 @@ ParallelDownloads = 5
                             </li>
                         
                             <li class='page-nav-level-3'>
-                                <a href='#31.1-если-хотите-xfce4-27'>31.1 Если хотите xfce4</a>
-                            </li>
-                        
-                            <li class='page-nav-level-3'>
-                                <a href='#24.-добавляем-сервисы-в-автозагрузку-28'>24. Добавляем сервисы в автозагрузку</a>
+                                <a href='#24.-добавляем-сервисы-в-автозагрузку-27'>24. Добавляем сервисы в автозагрузку</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#25.-выходим-из-шела-29'>25. Выходим из шела</a>
+                                <a href='#25.-выходим-из-шела-28'>25. Выходим из шела</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#26.-отключаем-все-разделы-30'>26. Отключаем все разделы</a>
+                                <a href='#26.-отключаем-все-разделы-29'>26. Отключаем все разделы</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#27.-грузимся-(не-забудьте-отключить-все-левые-накопители/загрузочную-флешку)-31'>27. Грузимся (не забудьте отключить все левые накопители/загрузочную флешку)</a>
+                                <a href='#27.-грузимся-(не-забудьте-отключить-все-левые-накопители/загрузочную-флешку)-30'>27. Грузимся (не забудьте отключить все левые накопители/загрузочную флешку)</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#28.-установка-yay-32'>28. Установка yay</a>
+                                <a href='#28.-установка-yay-31'>28. Установка yay</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#29.-делаем-красивым-его-в-консоли-33'>29. Делаем красивым его в консоли</a>
+                                <a href='#29.-делаем-красивым-его-в-консоли-32'>29. Делаем красивым его в консоли</a>
                             </li>
                         
                     </ul>
@@ -453,10 +448,10 @@ ParallelDownloads = 5
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="/assets/mermaid.js?v=1637608971"></script>
-    <script type="text/javascript" src="/assets/elasticlunr.js?v=1637608971"></script>
-    <script type="text/javascript" src="/assets/doctave-app.js?v=1637608971"></script>
-    <script type="text/javascript" src="/assets/prism.js?v=1637608971"></script>
+    <script type="text/javascript" src="/assets/mermaid.js?v=1637659924"></script>
+    <script type="text/javascript" src="/assets/elasticlunr.js?v=1637659924"></script>
+    <script type="text/javascript" src="/assets/doctave-app.js?v=1637659924"></script>
+    <script type="text/javascript" src="/assets/prism.js?v=1637659924"></script>
 </body>
 
 </html>
