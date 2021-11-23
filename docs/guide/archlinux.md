@@ -150,7 +150,7 @@ vim /etc/mkinitcpio.conf
 `i915` (Intel) в модули. Добавляем `encrypt` и `lvm2` в HOOKS до filesystems   
 Добавляем `resume` после `lvm2` (также `udev` должно быть до этого)  
 Мои **hooks** выгледят так: `HOOKS=(base udev autodetect modconf block encrypt lvm2 resume filesystems keyboard fsck)`  
-И **modules** `MODULES=(i915)`
+И **modules** `MODULES=(i915 ext4)`
 
 ## 18. Перегенерируем initrd image
 
