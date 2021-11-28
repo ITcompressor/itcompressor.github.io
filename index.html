@@ -11,15 +11,15 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1637659924" media="screen" />
-    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1637659924" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1638107210" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1638107210" media="screen" />
 
-    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1637659924" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1638107210" media="screen" />
 
     
 
     <script>
-        var DOCTAVE_TIMESTAMP = "1637659924";
+        var DOCTAVE_TIMESTAMP = "1638107210";
         var BASE_PATH = "/";
         var color = localStorage.getItem('doctave-color')
 
@@ -85,7 +85,10 @@
             
                 <ul>
     
-        <li><a href="/guide/archlinux">archlinux</a></li>
+        <li><a href="/guide/installation_archlinux">installation_archlinux</a></li>
+        
+    
+        <li><a href="/guide/installation_docker">installation_docker</a></li>
         
     
 </ul>
@@ -106,6 +109,9 @@
             <li><a href="/soft">soft</a></li>
             
                 <ul>
+    
+        <li><a href="/soft/docker">docker</a></li>
+        
     
         <li><a href="/soft/virtualbox">virtualbox</a></li>
         
@@ -152,8 +158,10 @@
 <p>Моя (возрожденная) тех-выжимка,
 блог автора: <a href="https://second-constantine.github.io/#">https://second-constantine.github.io/#</a></p>
 </blockquote>
-<table><thead><tr><th>upd: 2021-11-22</th><th>Ссылка</th><th>Описание</th></tr></thead><tbody>
-<tr><td><img src="/assets/img/archlinux.png" alt="arch"></td><td><a href="/guide/archlinux">Гайд по установке archlinux</a></td><td>Arch Linux — независимый дистрибутив GNU/Linux для опытных пользователей, оптимизированный для архитектуры x86-64, который стремится предоставить последние «новейшие» версии программ, следуя модели rolling release.</td></tr>
+<table><thead><tr><th>upd: 2021-11-28</th><th>Ссылка</th><th>Описание</th></tr></thead><tbody>
+<tr><td><img src="/assets/img/docker.png" alt="docker"></td><td><a href="/guide/installation_docker">Гайд по установке archlinux</a></td><td>Docker — программное обеспечение для автоматизации развёртывания и управления приложениями в средах с поддержкой контейнеризации, контейнеризатор приложений. Позволяет «упаковать» приложение со всем его окружением и зависимостями в контейнер, который может быть развёрнут на любой Linux-системе с поддержкой cgroups в ядре, а также предоставляет набор команд для управления этими контейнерами.</td></tr>
+<tr><td><img src="/assets/img/docker.png" alt="docker"></td><td><a href="/soft/docker">docker, docker-compose</a></td><td>-//-</td></tr>
+<tr><td><img src="/assets/img/archlinux.png" alt="arch"></td><td><a href="/guide/installation_archlinux">Гайд по установке archlinux</a></td><td>Arch Linux — независимый дистрибутив GNU/Linux для опытных пользователей, оптимизированный для архитектуры x86-64, который стремится предоставить последние «новейшие» версии программ, следуя модели rolling release.</td></tr>
 <tr><td><img src="/assets/img/ssh.png" alt="ssh"></td><td><a href="/tools/ssh">Заметка по ssh</a></td><td>SSH (англ. Secure Shell — «безопасная оболочка») — сетевой протокол прикладного уровня, позволяющий производить удалённое управление операционной системой и туннелирование TCP-соединений (например, для передачи файлов). Схож по функциональности с протоколами Telnet и rlogin, но, в отличие от них, шифрует весь трафик, включая и передаваемые пароли. SSH допускает выбор различных алгоритмов шифрования. SSH-клиенты и SSH-серверы доступны для большинства сетевых операционных систем.</td></tr>
 <tr><td><img src="/assets/img/mongo.png" alt="mongo_replica_set"></td><td><a href="/db/mongo_replica_set">Настройка mongo replica set</a></td><td>Replica Set — это кластер серверов MongoDB, реализующий механизм репликации master-slave и автоматическое переключение между ними. Это рекомендуемый механизм репликации от разработчиков MongoDB. ... Primary — основной сервер mongoDB.</td></tr>
 <tr><td><img src="/assets/img/wireguard.png" alt="wireguard"></td><td><a href="/soft/wireguard">Установка и настройка Wireguard</a></td><td>WireGuard — это современный протокол для организации VPN, написанный с нуля, бесплатный и с открытыми исходниками. В отличие от «мастодонтов»  вроде OpenVPN или IPSec, он намного проще и легче. Это касается и скорости (пере)подключения, и производительности, и требований к ресурсам, и процесса настройки, и объёма кода. Недавно было объявлено, что WireGuard войдёт в состав будущих ядер Linux, а впоследствии попадёт и во все популярные дистрибутивы, что косвенно указывает на зрелость этого решения.</td></tr>
@@ -182,10 +190,10 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="/assets/mermaid.js?v=1637659924"></script>
-    <script type="text/javascript" src="/assets/elasticlunr.js?v=1637659924"></script>
-    <script type="text/javascript" src="/assets/doctave-app.js?v=1637659924"></script>
-    <script type="text/javascript" src="/assets/prism.js?v=1637659924"></script>
+    <script type="text/javascript" src="/assets/mermaid.js?v=1638107210"></script>
+    <script type="text/javascript" src="/assets/elasticlunr.js?v=1638107210"></script>
+    <script type="text/javascript" src="/assets/doctave-app.js?v=1638107210"></script>
+    <script type="text/javascript" src="/assets/prism.js?v=1638107210"></script>
 </body>
 
 </html>

@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>server</title>
+    <title>installation_docker</title>
     <meta name="description" content="Documentation for ITcompressor">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -88,14 +88,14 @@
         <li><a href="/guide/installation_archlinux">installation_archlinux</a></li>
         
     
-        <li><a href="/guide/installation_docker">installation_docker</a></li>
+        <li><a class="active" href="/guide/installation_docker">installation_docker</a></li>
         
     
 </ul>
 
             
         
-            <li><a class="active" href="/server">server</a></li>
+            <li><a href="/server">server</a></li>
             
                 <ul>
     
@@ -154,12 +154,58 @@
 
             </div>
             <div class='content'>
-                <h1 id="index-of-server-1">Index of server</h1>
-<p>This page was generated automatically by Doctave, because the directory <code>docs/server</code> did not contain an index <code>README.md</code> file. You can customize this page by creating one yourself.</p>
-<h2 id="pages-2">Pages</h2>
-<ul>
-<li><a href="/server/glassfish">glassfish</a></li>
-</ul>
+                <p>Гайд по установке docker, docker-compose + интеграция в portainer</p>
+<p><strong>tags</strong> <code>isolation</code> <code>docker-compose</code>
+<strong>time</strong> 2021-11-28 16:24</p>
+<h2 id="установка-для-ubuntu-1">Установка для ubuntu</h2>
+<pre><code class="language-bash">sudo apt-get remove docker docker-engine docker.io
+sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo apt-key fingerprint 0EBFCD88
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt-get update
+sudo apt-get install docker-ce
+</code></pre>
+<h2 id="установка-для-debian-2">Установка для debian</h2>
+<pre><code class="language-bash">sudo apt-get remove docker docker-engine docker.io
+sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+apt-key fingerprint 0EBFCD88
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
+sudo apt-get update
+sudo apt-get install docker-ce
+</code></pre>
+<h2 id="использование-докера-без-рута-3">Использование докера без рута</h2>
+<pre><code class="language-bash">sudo usermod -aG docker $USER
+newgrp docker
+sudo systemctl restart docker
+sudo chmod 666 /var/run/docker.sock
+</code></pre>
+<h2 id="установка-docker-compose-4">Установка docker-compose</h2>
+<p>Через apt</p>
+<pre><code class="language-bash">sudo apt install docker-compose
+</code></pre>
+<p>Ручная установка</p>
+<pre><code class="language-bash">sudo curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+</code></pre>
+<h2 id="настройка-агента-для-portainer-5">Настройка агента для portainer</h2>
+<p>Правим конфиг</p>
+<pre><code class="language-bash">sudo nano /etc/default/docker
+</code></pre>
+<p>Добавляем</p>
+<pre><code>DOCKER_OPTS="-H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock"
+</code></pre>
+<p>Правим старт сервиса</p>
+<pre><code class="language-bash">sudo nano /lib/systemd/system/docker.service
+</code></pre>
+<p>Меняем</p>
+<pre><code>ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock --containerd=/run/containerd/containerd.sock
+</code></pre>
+<p>Рестартим</p>
+<pre><code class="language-bash">sudo systemctl daemon-reload
+sudo service docker restart
+</code></pre>
 
             </div>
             <div class='sidebar-right'>
@@ -167,12 +213,24 @@
                     <p class='page-nav-header'>On this page</p>
                     <ul>
                         
-                            <li class='page-nav-level-1'>
-                                <a href='#index-of-server-1'>Index of server</a>
+                            <li class='page-nav-level-2'>
+                                <a href='#установка-для-ubuntu-1'>Установка для ubuntu</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#pages-2'>Pages</a>
+                                <a href='#установка-для-debian-2'>Установка для debian</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#использование-докера-без-рута-3'>Использование докера без рута</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#установка-docker-compose-4'>Установка docker-compose</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#настройка-агента-для-portainer-5'>Настройка агента для portainer</a>
                             </li>
                         
                     </ul>
