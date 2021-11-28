@@ -1,7 +1,7 @@
 Гайд по установке docker, docker-compose + интеграция в portainer
 
 **tags** `isolation` `docker-compose`
-**time** 2021-11-28 16:24
+**time** 2021-11-28 16:24       
 
 ## Установка для ubuntu
 
