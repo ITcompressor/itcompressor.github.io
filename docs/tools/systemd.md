@@ -70,7 +70,7 @@ sudo systemctl unmask nginx.service
 
 ## Редактирование юнит файлов
 ```bash
-sudo systemctl edit –full nginx.service
+sudo systemctl edit -–full nginx.service
 ```
 > Это загрузит текущий юнит-файл в редактор, где его можно будет изменить. Когда редактор закроется, измененный файл будет записан в /etc/systemd/system и будет иметь приоритет над определением юнита системы (обычно он находится где-то в /lib/systemd/system).
 
