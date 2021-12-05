@@ -11,15 +11,15 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1638707456" media="screen" />
-    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1638707456" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1638707740" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1638707740" media="screen" />
 
-    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1638707456" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1638707740" media="screen" />
 
     
 
     <script>
-        var DOCTAVE_TIMESTAMP = "1638707456";
+        var DOCTAVE_TIMESTAMP = "1638707740";
         var BASE_PATH = "/";
         var color = localStorage.getItem('doctave-color')
 
@@ -159,7 +159,7 @@
             <div class='content'>
                 <p>Настройка mongo replica set</p>
 <p><strong>tags</strong> <code>mongo</code> <code>mongodb</code> <code>replication</code>
-<strong>date</strong> 2021-11-15 23:32
+<strong>date</strong> 2021-12-05 15:34
 <strong>links</strong> <a href="https://docs.mongodb.com/manual/tutorial/deploy-replica-set/">official doc</a> |</p>
 <blockquote>
 <p>Replica Set — это кластер серверов MongoDB, реализующий механизм репликации master-slave и автоматическое переключение между ними. Это рекомендуемый механизм репликации от разработчиков MongoDB. ... Primary — основной сервер mongoDB.</p>
@@ -196,7 +196,7 @@ replication:
    replSetName: "rs0"
 </code></pre>
 <h3 id="правим-сервис-и-выставляем-запуск-от-рута-3">Правим сервис и выставляем запуск от рута</h3>
-<pre><code class="language-bash">sudo nano /lib/systemd/system/mongod.service
+<pre><code class="language-bash">sudo systemctl edit -–full mongod.service
 </code></pre>
 <p>Это конечно не совсем правильно, но меньше гемора с правами</p>
 <h3 id="запускаем-и-добавляем-в-автозагрузки-+-проверям-статус-4">Запускаем и добавляем в автозагрузки + проверям статус</h3>
@@ -278,10 +278,10 @@ rs.status()
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="/assets/mermaid.js?v=1638707456"></script>
-    <script type="text/javascript" src="/assets/elasticlunr.js?v=1638707456"></script>
-    <script type="text/javascript" src="/assets/doctave-app.js?v=1638707456"></script>
-    <script type="text/javascript" src="/assets/prism.js?v=1638707456"></script>
+    <script type="text/javascript" src="/assets/mermaid.js?v=1638707740"></script>
+    <script type="text/javascript" src="/assets/elasticlunr.js?v=1638707740"></script>
+    <script type="text/javascript" src="/assets/doctave-app.js?v=1638707740"></script>
+    <script type="text/javascript" src="/assets/prism.js?v=1638707740"></script>
 </body>
 
 </html>
