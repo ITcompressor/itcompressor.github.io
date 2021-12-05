@@ -1,7 +1,7 @@
 Настройка mongo replica set
 
 **tags** `mongo` `mongodb` `replication`
-**date** 2021-11-15 23:32
+**date** 2021-12-05 15:34
 **links** [official doc](https://docs.mongodb.com/manual/tutorial/deploy-replica-set/) |
 
 > Replica Set — это кластер серверов MongoDB, реализующий механизм репликации master-slave и автоматическое переключение между ними. Это рекомендуемый механизм репликации от разработчиков MongoDB. ... Primary — основной сервер mongoDB.
@@ -40,7 +40,7 @@ replication:
 ```
 ### Правим сервис и выставляем запуск от рута
 ```bash
-sudo nano /lib/systemd/system/mongod.service
+sudo systemctl edit -–full mongod.service
 ```
 Это конечно не совсем правильно, но меньше гемора с правами
 ### Запускаем и добавляем в автозагрузки + проверям статус
