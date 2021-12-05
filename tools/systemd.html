@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>docker</title>
+    <title>systemd</title>
     <meta name="description" content="Documentation for ITcompressor">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -110,7 +110,7 @@
             
                 <ul>
     
-        <li><a class="active" href="/soft/docker">docker</a></li>
+        <li><a href="/soft/docker">docker</a></li>
         
     
         <li><a href="/soft/virtualbox">virtualbox</a></li>
@@ -133,7 +133,7 @@
         <li><a href="/tools/ssh">ssh</a></li>
         
     
-        <li><a href="/tools/systemd">systemd</a></li>
+        <li><a class="active" href="/tools/systemd">systemd</a></li>
         
     
         <li><a href="/tools/vim">vim</a></li>
@@ -157,78 +157,69 @@
 
             </div>
             <div class='content'>
-                <p>docker, docker-compose</p>
-<p><strong>tags</strong> <code>isolation</code> <code>docker-compose</code>
-<strong>time</strong> 2021-11-28 16:23</p>
-<h2 id="манипуляции-с-контейнерами-1">Манипуляции с контейнерами</h2>
-<h3 id="просмотр-всех-контейнеров-2">Просмотр всех контейнеров</h3>
-<pre><code class="language-bash">docker ps -a
+                <p>Микрогайд по systemd</p>
+<p><strong>tags</strong> <code>service</code> <code>runner</code>
+<strong>time</strong> 2021-12-05 15:26
+<strong>links</strong> <a href="https://www.8host.com/blog/upravlenie-servisami-i-yunitami-systemd-s-pomoshhyu-systemctl/">nice guide</a> |</p>
+<h2 id="перзагрузить-конфигурацию,-а-если-не-получится-без-перезагрузки,-то-и-сервис-1">Перзагрузить конфигурацию, а если не получится без перезагрузки, то и сервис</h2>
+<pre><code class="language-bash">sudo systemctl reload-or-restart application.service
 </code></pre>
-<h3 id="просмотр-всех-запущенных-контейнеров-3">Просмотр всех запущенных контейнеров</h3>
-<pre><code class="language-bash">docker ps
-</code></pre>
-<h3 id="удаление-контейнера-4">Удаление контейнера</h3>
-<pre><code class="language-bash">docker rm $container_name
-</code></pre>
-<h3 id="удаление-всех-неактивных-контейнеров-5">Удаление всех неактивных контейнеров</h3>
-<pre><code class="language-bash">docker rm -v $(docker ps -aq -f status=exited)
-</code></pre>
-<h3 id="запуск-контейнера-(если-контейнер-стопнут)-6">Запуск контейнера (если контейнер стопнут)</h3>
-<pre><code class="language-bash">docker start $container_name
-</code></pre>
-<h3 id="просмотр-информации-о-контейнере-7">Просмотр информации о контейнере</h3>
-<pre><code class="language-bash">docker inspect $conainer_name
-</code></pre>
-<h3 id="просмотр-лога-контейнера-8">Просмотр лога контейнера</h3>
-<pre><code class="language-bash">docker log $container_name
-</code></pre>
-<h3 id="запуск-контейнера-с-пробросом-портов-(80---контейнер,-8080---хост)-9">Запуск контейнера с пробросом портов (80 - контейнер, 8080 - хост)</h3>
-<pre><code class="language-bash">docker run -d -p 8080:80 $container
-</code></pre>
-<h3 id="запуск-bash-контейнера-10">Запуск bash контейнера</h3>
-<pre><code class="language-bash">docker exec -it $container_name bash
-</code></pre>
-<h3 id="пример-запуск-утилиты-контейнера-11">Пример запуск утилиты контейнера</h3>
-<pre><code class="language-bash">docker exec infra_mongodb_1 mongoexport -d devbot -c botLog -o /root/test.json
-</code></pre>
-<h2 id="работа-с-имейджами-12">Работа с имейджами</h2>
-<h3 id="создание-имейджа-13">Создание имейджа</h3>
-<pre><code class="language-bash">docker run -it --name myapp --hostname myapp ubuntu bash
-apt update
-apt install cowsay
-docker commit myapp MY_DOCKER_ID/MY_IMAGE
-docker push MY_DOCKER_ID/MY_IMAGE
-</code></pre>
-<h3 id="билд-dockerfile-14">Билд dockerfile</h3>
-<pre><code class="language-bash">docker build .
-</code></pre>
-<h2 id="основные-команды-docker-compose-15">Основные команды docker-compose</h2>
-<h3 id="запуск-в-бекграунде-по-файлу-16">Запуск в бекграунде по файлу</h3>
-<p><code>-d</code> - бекграунд
-<code>-f</code> - файл</p>
-<pre><code class="language-bash">docker-compose -f mongo.yaml up -d
-</code></pre>
-<p>Сам mongo.yaml может выглядеть так</p>
-<pre><code class="language-yaml">version: '3.3'
+<h2 id="включение-и-отключение-сервисов-(автозапуск)-2">Включение и отключение сервисов (автозапуск)</h2>
+<pre><code class="language-bash">sudo systemctl enable application.service
 
-services:
-
-  mongodb:
-    image: mongo:3.6.21 # for legacy mongeez
-    restart: always
-    environment:
-      - MONGO_DATA_DIR=/data/db
-    ports:
-      - 127.0.0.1:27017:27017 # if need only localhost
-    command: mongod
-    expose:
-      - '27017'
-    volumes: # config for vds
-      - "/root/mongo:/data/db" # data
-      - "~/:/root" # home
+sudo systemctl disable application.service
 </code></pre>
-<h3 id="стоп-17">Стоп</h3>
-<pre><code class="language-bash">docker-compose stop
+<blockquote>
+<p>Это создаст символическую ссылку на копию файла сервиса (обычно в /lib/systemd/system или /etc/systemd/system) в точке на диске, где systemd ищет файлы для автозапуска (обычно /etc/systemd/system/some_target.target.want</p>
+</blockquote>
+<h2 id="статус-и-состояние-3">Статус и состояние</h2>
+<pre><code class="language-bash">systemctl status application.service
+
+systemctl is-active application.service
+
+systemctl is-enabled application.service
+
+systemctl is-failed application.service
+</code></pre>
+<h2 id="список-юнит-файлов-4">Список юнит файлов</h2>
+<pre><code class="language-bash">systemctl list-unit-files
+</code></pre>
+<h3 id="список-юнитов-systemd-5">Список юнитов systemd</h3>
+<pre><code class="language-bash">systemctl list-units
+</code></pre>
+<table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr><td>UNIT</td><td>название юнита systemd.</td></tr>
+<tr><td>LOAD</td><td>сообщает, была ли конфигурация юнита обработана systemd. Конфигурация загруженных юнитов хранится в памяти.</td></tr>
+<tr><td>ACTIVE</td><td>сводное состояние юнита. Обычно это позволяет быстро определить, успешно ли запущен текущий юнит.</td></tr>
+<tr><td>SUB</td><td>состояние более низкого уровня, которое сообщает подробную информацию об устройстве. Это часто зависит от типа юнита, состояния и фактического метода, в котором запущен юнит.</td></tr>
+<tr><td>DESCRIPTION</td><td>краткое описание функций юнита.</td></tr>
+</tbody></table>
+<h2 id="отображение-юнит-файла-6">Отображение юнит файла</h2>
+<pre><code class="language-bash">systemctl cat atd.service
+</code></pre>
+<h3 id="отображение-зависимостей-7">Отображение зависимостей</h3>
+<pre><code class="language-bash">systemctl list-dependencies sshd.service
+</code></pre>
+<h3 id="отобразить-свойства-юнита-8">Отобразить свойства юнита</h3>
+<pre><code class="language-bash">systemctl show sshd.service
+</code></pre>
+<h2 id="команды-маскирования-(блокировки)-юнитов-9">Команды маскирования (блокировки) юнитов</h2>
+<pre><code class="language-bash">sudo systemctl mask nginx.service
+
+sudo systemctl unmask nginx.service
+</code></pre>
+<h2 id="редактирование-юнит-файлов-10">Редактирование юнит файлов</h2>
+<pre><code class="language-bash">sudo systemctl edit –full nginx.service
+</code></pre>
+<blockquote>
+<p>Это загрузит текущий юнит-файл в редактор, где его можно будет изменить. Когда редактор закроется, измененный файл будет записан в /etc/systemd/system и будет иметь приоритет над определением юнита системы (обычно он находится где-то в /lib/systemd/system).</p>
+</blockquote>
+<h2 id="удаление-дополнений-(изменений)-11">Удаление дополнений (изменений)</h2>
+<pre><code class="language-bash">sudo rm -r /etc/systemd/system/nginx.service.d
+
+sudo rm /etc/systemd/system/nginx.service
+
+sudo systemctl daemon-reload
 </code></pre>
 
             </div>
@@ -238,71 +229,47 @@ services:
                     <ul>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#манипуляции-с-контейнерами-1'>Манипуляции с контейнерами</a>
-                            </li>
-                        
-                            <li class='page-nav-level-3'>
-                                <a href='#просмотр-всех-контейнеров-2'>Просмотр всех контейнеров</a>
-                            </li>
-                        
-                            <li class='page-nav-level-3'>
-                                <a href='#просмотр-всех-запущенных-контейнеров-3'>Просмотр всех запущенных контейнеров</a>
-                            </li>
-                        
-                            <li class='page-nav-level-3'>
-                                <a href='#удаление-контейнера-4'>Удаление контейнера</a>
-                            </li>
-                        
-                            <li class='page-nav-level-3'>
-                                <a href='#удаление-всех-неактивных-контейнеров-5'>Удаление всех неактивных контейнеров</a>
-                            </li>
-                        
-                            <li class='page-nav-level-3'>
-                                <a href='#запуск-контейнера-(если-контейнер-стопнут)-6'>Запуск контейнера (если контейнер стопнут)</a>
-                            </li>
-                        
-                            <li class='page-nav-level-3'>
-                                <a href='#просмотр-информации-о-контейнере-7'>Просмотр информации о контейнере</a>
-                            </li>
-                        
-                            <li class='page-nav-level-3'>
-                                <a href='#просмотр-лога-контейнера-8'>Просмотр лога контейнера</a>
-                            </li>
-                        
-                            <li class='page-nav-level-3'>
-                                <a href='#запуск-контейнера-с-пробросом-портов-(80---контейнер,-8080---хост)-9'>Запуск контейнера с пробросом портов (80 - контейнер, 8080 - хост)</a>
-                            </li>
-                        
-                            <li class='page-nav-level-3'>
-                                <a href='#запуск-bash-контейнера-10'>Запуск bash контейнера</a>
-                            </li>
-                        
-                            <li class='page-nav-level-3'>
-                                <a href='#пример-запуск-утилиты-контейнера-11'>Пример запуск утилиты контейнера</a>
+                                <a href='#перзагрузить-конфигурацию,-а-если-не-получится-без-перезагрузки,-то-и-сервис-1'>Перзагрузить конфигурацию, а если не получится без перезагрузки, то и сервис</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#работа-с-имейджами-12'>Работа с имейджами</a>
-                            </li>
-                        
-                            <li class='page-nav-level-3'>
-                                <a href='#создание-имейджа-13'>Создание имейджа</a>
-                            </li>
-                        
-                            <li class='page-nav-level-3'>
-                                <a href='#билд-dockerfile-14'>Билд dockerfile</a>
+                                <a href='#включение-и-отключение-сервисов-(автозапуск)-2'>Включение и отключение сервисов (автозапуск)</a>
                             </li>
                         
                             <li class='page-nav-level-2'>
-                                <a href='#основные-команды-docker-compose-15'>Основные команды docker-compose</a>
+                                <a href='#статус-и-состояние-3'>Статус и состояние</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#список-юнит-файлов-4'>Список юнит файлов</a>
                             </li>
                         
                             <li class='page-nav-level-3'>
-                                <a href='#запуск-в-бекграунде-по-файлу-16'>Запуск в бекграунде по файлу</a>
+                                <a href='#список-юнитов-systemd-5'>Список юнитов systemd</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#отображение-юнит-файла-6'>Отображение юнит файла</a>
                             </li>
                         
                             <li class='page-nav-level-3'>
-                                <a href='#стоп-17'>Стоп</a>
+                                <a href='#отображение-зависимостей-7'>Отображение зависимостей</a>
+                            </li>
+                        
+                            <li class='page-nav-level-3'>
+                                <a href='#отобразить-свойства-юнита-8'>Отобразить свойства юнита</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#команды-маскирования-(блокировки)-юнитов-9'>Команды маскирования (блокировки) юнитов</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#редактирование-юнит-файлов-10'>Редактирование юнит файлов</a>
+                            </li>
+                        
+                            <li class='page-nav-level-2'>
+                                <a href='#удаление-дополнений-(изменений)-11'>Удаление дополнений (изменений)</a>
                             </li>
                         
                     </ul>
