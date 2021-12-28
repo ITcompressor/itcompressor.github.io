@@ -1,7 +1,7 @@
 Гайд по установке docker, docker-compose + интеграция в portainer
 
 **tags** `isolation` `docker-compose`
-**time** 2021-11-28 16:24       
+**time** 2021-12-28 22:00       
 
 ## Установка для ubuntu
 
@@ -56,7 +56,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 Правим конфиг
 
 ```bash
-sudo nano /etc/default/docker
+sudo systemctl edit --full docker.service
 ```
 
 Добавляем
