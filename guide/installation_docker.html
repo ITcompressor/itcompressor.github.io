@@ -11,15 +11,15 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1638707740" media="screen" />
-    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1638707740" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1640718082" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1640718082" media="screen" />
 
-    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1638707740" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1640718082" media="screen" />
 
     
 
     <script>
-        var DOCTAVE_TIMESTAMP = "1638707740";
+        var DOCTAVE_TIMESTAMP = "1640718082";
         var BASE_PATH = "/";
         var color = localStorage.getItem('doctave-color')
 
@@ -159,7 +159,7 @@
             <div class='content'>
                 <p>Гайд по установке docker, docker-compose + интеграция в portainer</p>
 <p><strong>tags</strong> <code>isolation</code> <code>docker-compose</code>
-<strong>time</strong> 2021-11-28 16:24</p>
+<strong>time</strong> 2021-12-28 22:00</p>
 <h2 id="установка-для-ubuntu-1">Установка для ubuntu</h2>
 <pre><code class="language-bash">sudo apt-get remove docker docker-engine docker.io
 sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
@@ -194,7 +194,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 </code></pre>
 <h2 id="настройка-агента-для-portainer-5">Настройка агента для portainer</h2>
 <p>Правим конфиг</p>
-<pre><code class="language-bash">sudo nano /etc/default/docker
+<pre><code class="language-bash">sudo systemctl edit --full docker.service
 </code></pre>
 <p>Добавляем</p>
 <pre><code>DOCKER_OPTS="-H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock"
@@ -249,10 +249,10 @@ sudo service docker restart
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="/assets/mermaid.js?v=1638707740"></script>
-    <script type="text/javascript" src="/assets/elasticlunr.js?v=1638707740"></script>
-    <script type="text/javascript" src="/assets/doctave-app.js?v=1638707740"></script>
-    <script type="text/javascript" src="/assets/prism.js?v=1638707740"></script>
+    <script type="text/javascript" src="/assets/mermaid.js?v=1640718082"></script>
+    <script type="text/javascript" src="/assets/elasticlunr.js?v=1640718082"></script>
+    <script type="text/javascript" src="/assets/doctave-app.js?v=1640718082"></script>
+    <script type="text/javascript" src="/assets/prism.js?v=1640718082"></script>
 </body>
 
 </html>
