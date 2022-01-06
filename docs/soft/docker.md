@@ -44,7 +44,7 @@ docker inspect $conainer_name
 ### Просмотр лога контейнера
 
 ```bash
-docker log $container_name
+docker logs $container_name
 ```
 
 ### Запуск контейнера с пробросом портов (80 - контейнер, 8080 - хост)
