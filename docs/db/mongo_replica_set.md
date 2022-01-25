@@ -1,7 +1,7 @@
 Настройка mongo replica set
 
 **tags** `mongo` `mongodb` `replication`
-**date** 2021-12-05 15:34
+**date** 2022-01-25 21:48
 **links** [official doc](https://docs.mongodb.com/manual/tutorial/deploy-replica-set/) |
 
 > Replica Set — это кластер серверов MongoDB, реализующий механизм репликации master-slave и автоматическое переключение между ними. Это рекомендуемый механизм репликации от разработчиков MongoDB. ... Primary — основной сервер mongoDB.
@@ -79,3 +79,13 @@ rs.status()
 mongodb://10.0.0.2:27017,10.0.0.3:27017,10.0.0.4:27017
 ```
 
+
+## Удаление участника реплики
+На участнике стопаем реплику
+```js
+db.shutdownServer()
+```
+На любом остальном участнике реплики удаляем участника
+```js
+rs.remove("10.0.0.6:27017")
+```
