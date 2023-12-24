@@ -31,3 +31,8 @@ doctave serve
 
 # Настройка github
 Переходим в настройки (https://github.com/ITcompressor/itcompressor.github.io/settings/pages) и указываем ветку `gh-pages`
+
+# Для уменьшения размера картинок можно использовать **imagemagick**
+```bash
+convert image.png -scale 20% -size 24% image2.png
+```
