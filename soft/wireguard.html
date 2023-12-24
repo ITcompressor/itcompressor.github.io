@@ -9,17 +9,20 @@
     <meta name="description" content="Documentation for ITcompressor">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
+        rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1643136942" media="screen" />
-    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1643136942" media="screen" />
-
-    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1643136942" media="screen" />
-
-    
+    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1703437060"
+        media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1703437060"
+        media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/katex.css?v=1703437060" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1703437060"
+        media="screen" />
 
     <script>
-        var DOCTAVE_TIMESTAMP = "1643136942";
+        var DOCTAVE_TIMESTAMP = "1703437060";
         var BASE_PATH = "/";
         var color = localStorage.getItem('doctave-color')
 
@@ -44,9 +47,9 @@
         <div class='header'>
             <div class='logo'>
                 
-                    <a href="/">
-                        <img src="/favicon.ico" alt='ITcompressor logo'></img>
-                    </a>
+                <a href="/">
+                    <img src="/favicon.ico" alt='ITcompressor logo'></img>
+                </a>
                 
                 <h2 class='project-name'>
                     <a href="/">
@@ -110,6 +113,9 @@
             
                 <ul>
     
+        <li><a href="/soft/ansible">ansible</a></li>
+        
+    
         <li><a href="/soft/docker">docker</a></li>
         
     
@@ -156,12 +162,12 @@
 </nav>
 
             </div>
-            <div class='content'>
+            <div class='doctave-content'>
                 <p>Установка и настройка Wireguard</p>
 <p><strong>tags</strong> <code>vpn</code> <code>selfhost</code>
 <strong>time</strong> 2021-10-16 11:33
 <strong>links</strong> <a href="https://devpew.com/blog/wireguard/">wireguard guilde</a> | <a href="https://youtu.be/03RCvhwcoN0">WireGuard. Настраиваем быстрый VPN</a> |</p>
-<h1 id="установка-wireguard-1">Установка wireguard</h1>
+<h1 id="установка-wireguard">Установка wireguard</h1>
 <pre><code class="language-bash">apt install wireguard
 </code></pre>
 <p>разрешаем проброс пакетов</p>
@@ -170,7 +176,7 @@
 <p>Проверям, добавилось или нет</p>
 <pre><code class="language-bash">sysctl -p
 </code></pre>
-<h1 id="конфигурация-wireguard-для-сервера-2">Конфигурация wireguard для сервера</h1>
+<h1 id="конфигурация-wireguard-для-сервера">Конфигурация wireguard для сервера</h1>
 <p>Генерируем публичный и приватный ключ на сервере</p>
 <pre><code class="language-bash">wg genkey | tee /etc/wireguard/privatekey | wg pubkey | tee /etc/wireguard/publickey
 </code></pre>
@@ -191,7 +197,7 @@ PrivateKey = &lt;SERVER-PRIV-KEY&gt;
 <p>запускаем сервис</p>
 <pre><code class="language-bash">systemctl enable wg-quick@wg0
 </code></pre>
-<h2 id="проверяем-3">Проверяем</h2>
+<h2 id="проверяем">Проверяем</h2>
 <pre><code class="language-bash">wg show wg0
 </code></pre>
 <p>Проверяем работу службы</p>
@@ -202,7 +208,7 @@ PrivateKey = &lt;SERVER-PRIV-KEY&gt;
 systemctl start wg-quick@wg0
 systemctl status wg-quick@wg0
 </code></pre>
-<h1 id="конфигурация-для-клиента-4">Конфигурация для клиента</h1>
+<h1 id="конфигурация-для-клиента">Конфигурация для клиента</h1>
 <p>на сервере</p>
 <pre><code class="language-bash">wg genkey | tee /etc/wireguard/mac_privatekey | wg pubkey | tee /etc/wireguard/mac_publickey
 </code></pre>
@@ -242,17 +248,17 @@ Endpoint = &lt;SERVER-IP&gt;:51820
 AllowedIPs = 0.0.0.0/0
 PersistentKeepalive = 20
 </code></pre>
-<h3 id="добавление-клиента-на-сервер-5">Добавление клиента на сервер</h3>
+<h3 id="добавление-клиента-на-сервер">Добавление клиента на сервер</h3>
 <pre><code class="language-bash">sudo wg set wg0 peer DESKTOP_CLIENT_PUBLIC_KEY allowed-ips 10.0.0.2
 </code></pre>
-<h3 id="включение-клиента-+-просмотр-статуса-6">Включение клиента + просмотр статуса</h3>
+<h3 id="включение-клиента-+-просмотр-статуса">Включение клиента + просмотр статуса</h3>
 <pre><code class="language-bash">sudo wg-quick up wg0
 sudo wg
 </code></pre>
 <p>(Опционально) Подключение при старте</p>
 <pre><code class="language-bash">sudo systemctl enable wg-quick@wg0
 </code></pre>
-<h2 id="для-android-и-ios-шаринг-конфига-7">Для android и iOS шаринг конфига</h2>
+<h2 id="для-android-и-ios-шаринг-конфига">Для android и iOS шаринг конфига</h2>
 <pre><code class="language-bash"># installation
 apt install qrencode
 
@@ -265,51 +271,60 @@ qrencode -t ansiutf8 &lt; iphone.conf
                     <p class='page-nav-header'>On this page</p>
                     <ul>
                         
-                            <li class='page-nav-level-1'>
-                                <a href='#установка-wireguard-1'>Установка wireguard</a>
-                            </li>
+                        <li class='page-nav-level-1'>
+                            <a href='#установка-wireguard'>Установка wireguard</a>
+                        </li>
                         
-                            <li class='page-nav-level-1'>
-                                <a href='#конфигурация-wireguard-для-сервера-2'>Конфигурация wireguard для сервера</a>
-                            </li>
+                        <li class='page-nav-level-1'>
+                            <a href='#конфигурация-wireguard-для-сервера'>Конфигурация wireguard для сервера</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#проверяем-3'>Проверяем</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#проверяем'>Проверяем</a>
+                        </li>
                         
-                            <li class='page-nav-level-1'>
-                                <a href='#конфигурация-для-клиента-4'>Конфигурация для клиента</a>
-                            </li>
+                        <li class='page-nav-level-1'>
+                            <a href='#конфигурация-для-клиента'>Конфигурация для клиента</a>
+                        </li>
                         
-                            <li class='page-nav-level-3'>
-                                <a href='#добавление-клиента-на-сервер-5'>Добавление клиента на сервер</a>
-                            </li>
+                        <li class='page-nav-level-3'>
+                            <a href='#добавление-клиента-на-сервер'>Добавление клиента на сервер</a>
+                        </li>
                         
-                            <li class='page-nav-level-3'>
-                                <a href='#включение-клиента-+-просмотр-статуса-6'>Включение клиента + просмотр статуса</a>
-                            </li>
+                        <li class='page-nav-level-3'>
+                            <a href='#включение-клиента-+-просмотр-статуса'>Включение клиента + просмотр статуса</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#для-android-и-ios-шаринг-конфига-7'>Для android и iOS шаринг конфига</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#для-android-и-ios-шаринг-конфига'>Для android и iOS шаринг конфига</a>
+                        </li>
                         
                     </ul>
                 </div>
             </div>
             <div class='wave-container'>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                    <path fill-opacity="0.35" d="M0,192L60,213.3C120,235,240,277,360,277.3C480,277,600,235,720,192C840,149,960,107,1080,122.7C1200,139,1320,213,1380,250.7L1440,288L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
-                    <path fill-opacity="0.5" d="M0,160L60,181.3C120,203,240,245,360,229.3C480,213,600,139,720,138.7C840,139,960,213,1080,229.3C1200,245,1320,203,1380,181.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
-                    <path fill-opacity="0.2" d="M0,224L60,197.3C120,171,240,117,360,117.3C480,117,600,171,720,186.7C840,203,960,181,1080,186.7C1200,192,1320,224,1380,240L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+                    <path fill-opacity="0.35"
+                        d="M0,192L60,213.3C120,235,240,277,360,277.3C480,277,600,235,720,192C840,149,960,107,1080,122.7C1200,139,1320,213,1380,250.7L1440,288L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                    </path>
+                    <path fill-opacity="0.5"
+                        d="M0,160L60,181.3C120,203,240,245,360,229.3C480,213,600,139,720,138.7C840,139,960,213,1080,229.3C1200,245,1320,203,1380,181.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                    </path>
+                    <path fill-opacity="0.2"
+                        d="M0,224L60,197.3C120,171,240,117,360,117.3C480,117,600,171,720,186.7C840,203,960,181,1080,186.7C1200,192,1320,224,1380,240L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                    </path>
                 </svg>
                 <p>Powered by <a href='https://cli.doctave.com' target='_blank'>Doctave</a></p>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="/assets/mermaid.js?v=1643136942"></script>
-    <script type="text/javascript" src="/assets/elasticlunr.js?v=1643136942"></script>
-    <script type="text/javascript" src="/assets/doctave-app.js?v=1643136942"></script>
-    <script type="text/javascript" src="/assets/prism.js?v=1643136942"></script>
+    <script type="text/javascript" src="/assets/katex.js?v=1703437060"></script>
+    <script type="text/javascript" src="/assets/mermaid.js?v=1703437060"></script>
+    <script type="text/javascript" src="/assets/elasticlunr.js?v=1703437060"></script>
+    <script type="text/javascript" src="/assets/prism.js?v=1703437060"></script>
+    <script type="text/javascript" src="/assets/doctave-app.js?v=1703437060"></script>
+
+    
 </body>
 
 </html>

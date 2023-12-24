@@ -9,17 +9,20 @@
     <meta name="description" content="Documentation for ITcompressor">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
+        rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1643136942" media="screen" />
-    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1643136942" media="screen" />
-
-    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1643136942" media="screen" />
-
-    
+    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1703437060"
+        media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1703437060"
+        media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/katex.css?v=1703437060" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1703437060"
+        media="screen" />
 
     <script>
-        var DOCTAVE_TIMESTAMP = "1643136942";
+        var DOCTAVE_TIMESTAMP = "1703437060";
         var BASE_PATH = "/";
         var color = localStorage.getItem('doctave-color')
 
@@ -44,9 +47,9 @@
         <div class='header'>
             <div class='logo'>
                 
-                    <a href="/">
-                        <img src="/favicon.ico" alt='ITcompressor logo'></img>
-                    </a>
+                <a href="/">
+                    <img src="/favicon.ico" alt='ITcompressor logo'></img>
+                </a>
                 
                 <h2 class='project-name'>
                     <a href="/">
@@ -110,6 +113,9 @@
             
                 <ul>
     
+        <li><a href="/soft/ansible">ansible</a></li>
+        
+    
         <li><a href="/soft/docker">docker</a></li>
         
     
@@ -156,7 +162,7 @@
 </nav>
 
             </div>
-            <div class='content'>
+            <div class='doctave-content'>
                 <p>Настройка mongo replica set</p>
 <p><strong>tags</strong> <code>mongo</code> <code>mongodb</code> <code>replication</code>
 <strong>date</strong> 2022-01-25 21:48
@@ -168,7 +174,7 @@
 <p>Ставил 5ую монгу на ubuntu server. Для примера айпишники: 10.0.0.2, 10.0.0.3, 10.0.0.4 (and etc) и кастомный путь 
 /root/DATA/mongodb</p>
 </blockquote>
-<h2 id="установка-1">Установка</h2>
+<h2 id="установка">Установка</h2>
 <pre><code class="language-bash">wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
 
 echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
@@ -177,7 +183,7 @@ sudo apt update
 
 sudo apt-get install -y mongodb-org
 </code></pre>
-<h2 id="пример-правки-конфига-/etc/mongod.conf-2">Пример правки конфига /etc/mongod.conf</h2>
+<h2 id="пример-правки-конфига-/etc/mongod.conf">Пример правки конфига /etc/mongod.conf</h2>
 <pre><code>storage:
   dbPath: /root/DATA/mongodb
   journal:
@@ -195,16 +201,16 @@ net:
 replication:
    replSetName: "rs0"
 </code></pre>
-<h3 id="правим-сервис-и-выставляем-запуск-от-рута-3">Правим сервис и выставляем запуск от рута</h3>
+<h3 id="правим-сервис-и-выставляем-запуск-от-рута">Правим сервис и выставляем запуск от рута</h3>
 <pre><code class="language-bash">sudo systemctl edit -–full mongod.service
 </code></pre>
 <p>Это конечно не совсем правильно, но меньше гемора с правами</p>
-<h3 id="запускаем-и-добавляем-в-автозагрузки-+-проверям-статус-4">Запускаем и добавляем в автозагрузки + проверям статус</h3>
+<h3 id="запускаем-и-добавляем-в-автозагрузки-+-проверям-статус">Запускаем и добавляем в автозагрузки + проверям статус</h3>
 <pre><code class="language-bash">sudo systemctl enable mongod.service 
 sudo systemctl start mongod.service 
 sudo systemctl status mongod.service
 </code></pre>
-<h2 id="инициализация-(только-на-одном-из-инстансов)-5">Инициализация (только на одном из инстансов)</h2>
+<h2 id="инициализация-(только-на-одном-из-инстансов)">Инициализация (только на одном из инстансов)</h2>
 <pre><code class="language-js">rs.initiate( {
    _id : "rs0",
    members: [
@@ -214,19 +220,19 @@ sudo systemctl status mongod.service
    ]
 })
 </code></pre>
-<h3 id="добавление-новой-реплики,-если-будет-необходимость-6">Добавление новой реплики, если будет необходимость</h3>
+<h3 id="добавление-новой-реплики,-если-будет-необходимость">Добавление новой реплики, если будет необходимость</h3>
 <pre><code class="language-js">rs.add( { host: "10.0.0.5:27017" } )
 </code></pre>
-<h2 id="дополнительные-команды-7">Дополнительные команды</h2>
+<h2 id="дополнительные-команды">Дополнительные команды</h2>
 <pre><code class="language-js">rs.conf()
 
 rs.status()
 </code></pre>
-<h2 id="пример-для-использования-8">Пример для использования</h2>
+<h2 id="пример-для-использования">Пример для использования</h2>
 <p>Если не указать все айпишники реплик, то если мастер переключится в SECONDARY - будет запрет на запись</p>
 <pre><code class="language-url">mongodb://10.0.0.2:27017,10.0.0.3:27017,10.0.0.4:27017
 </code></pre>
-<h2 id="удаление-участника-реплики-9">Удаление участника реплики</h2>
+<h2 id="удаление-участника-реплики">Удаление участника реплики</h2>
 <p>На участнике стопаем реплику</p>
 <pre><code class="language-js">db.shutdownServer()
 </code></pre>
@@ -240,59 +246,68 @@ rs.status()
                     <p class='page-nav-header'>On this page</p>
                     <ul>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#установка-1'>Установка</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#установка'>Установка</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#пример-правки-конфига-/etc/mongod.conf-2'>Пример правки конфига /etc/mongod.conf</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#пример-правки-конфига-/etc/mongod.conf'>Пример правки конфига /etc/mongod.conf</a>
+                        </li>
                         
-                            <li class='page-nav-level-3'>
-                                <a href='#правим-сервис-и-выставляем-запуск-от-рута-3'>Правим сервис и выставляем запуск от рута</a>
-                            </li>
+                        <li class='page-nav-level-3'>
+                            <a href='#правим-сервис-и-выставляем-запуск-от-рута'>Правим сервис и выставляем запуск от рута</a>
+                        </li>
                         
-                            <li class='page-nav-level-3'>
-                                <a href='#запускаем-и-добавляем-в-автозагрузки-+-проверям-статус-4'>Запускаем и добавляем в автозагрузки + проверям статус</a>
-                            </li>
+                        <li class='page-nav-level-3'>
+                            <a href='#запускаем-и-добавляем-в-автозагрузки-+-проверям-статус'>Запускаем и добавляем в автозагрузки + проверям статус</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#инициализация-(только-на-одном-из-инстансов)-5'>Инициализация (только на одном из инстансов)</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#инициализация-(только-на-одном-из-инстансов)'>Инициализация (только на одном из инстансов)</a>
+                        </li>
                         
-                            <li class='page-nav-level-3'>
-                                <a href='#добавление-новой-реплики,-если-будет-необходимость-6'>Добавление новой реплики, если будет необходимость</a>
-                            </li>
+                        <li class='page-nav-level-3'>
+                            <a href='#добавление-новой-реплики,-если-будет-необходимость'>Добавление новой реплики, если будет необходимость</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#дополнительные-команды-7'>Дополнительные команды</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#дополнительные-команды'>Дополнительные команды</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#пример-для-использования-8'>Пример для использования</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#пример-для-использования'>Пример для использования</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#удаление-участника-реплики-9'>Удаление участника реплики</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#удаление-участника-реплики'>Удаление участника реплики</a>
+                        </li>
                         
                     </ul>
                 </div>
             </div>
             <div class='wave-container'>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                    <path fill-opacity="0.35" d="M0,192L60,213.3C120,235,240,277,360,277.3C480,277,600,235,720,192C840,149,960,107,1080,122.7C1200,139,1320,213,1380,250.7L1440,288L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
-                    <path fill-opacity="0.5" d="M0,160L60,181.3C120,203,240,245,360,229.3C480,213,600,139,720,138.7C840,139,960,213,1080,229.3C1200,245,1320,203,1380,181.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
-                    <path fill-opacity="0.2" d="M0,224L60,197.3C120,171,240,117,360,117.3C480,117,600,171,720,186.7C840,203,960,181,1080,186.7C1200,192,1320,224,1380,240L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+                    <path fill-opacity="0.35"
+                        d="M0,192L60,213.3C120,235,240,277,360,277.3C480,277,600,235,720,192C840,149,960,107,1080,122.7C1200,139,1320,213,1380,250.7L1440,288L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                    </path>
+                    <path fill-opacity="0.5"
+                        d="M0,160L60,181.3C120,203,240,245,360,229.3C480,213,600,139,720,138.7C840,139,960,213,1080,229.3C1200,245,1320,203,1380,181.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                    </path>
+                    <path fill-opacity="0.2"
+                        d="M0,224L60,197.3C120,171,240,117,360,117.3C480,117,600,171,720,186.7C840,203,960,181,1080,186.7C1200,192,1320,224,1380,240L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                    </path>
                 </svg>
                 <p>Powered by <a href='https://cli.doctave.com' target='_blank'>Doctave</a></p>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="/assets/mermaid.js?v=1643136942"></script>
-    <script type="text/javascript" src="/assets/elasticlunr.js?v=1643136942"></script>
-    <script type="text/javascript" src="/assets/doctave-app.js?v=1643136942"></script>
-    <script type="text/javascript" src="/assets/prism.js?v=1643136942"></script>
+    <script type="text/javascript" src="/assets/katex.js?v=1703437060"></script>
+    <script type="text/javascript" src="/assets/mermaid.js?v=1703437060"></script>
+    <script type="text/javascript" src="/assets/elasticlunr.js?v=1703437060"></script>
+    <script type="text/javascript" src="/assets/prism.js?v=1703437060"></script>
+    <script type="text/javascript" src="/assets/doctave-app.js?v=1703437060"></script>
+
+    
 </body>
 
 </html>

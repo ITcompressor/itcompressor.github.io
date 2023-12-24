@@ -9,17 +9,20 @@
     <meta name="description" content="Documentation for ITcompressor">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
+        rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1643136942" media="screen" />
-    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1643136942" media="screen" />
-
-    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1643136942" media="screen" />
-
-    
+    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1703437060"
+        media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1703437060"
+        media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/katex.css?v=1703437060" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1703437060"
+        media="screen" />
 
     <script>
-        var DOCTAVE_TIMESTAMP = "1643136942";
+        var DOCTAVE_TIMESTAMP = "1703437060";
         var BASE_PATH = "/";
         var color = localStorage.getItem('doctave-color')
 
@@ -44,9 +47,9 @@
         <div class='header'>
             <div class='logo'>
                 
-                    <a href="/">
-                        <img src="/favicon.ico" alt='ITcompressor logo'></img>
-                    </a>
+                <a href="/">
+                    <img src="/favicon.ico" alt='ITcompressor logo'></img>
+                </a>
                 
                 <h2 class='project-name'>
                     <a href="/">
@@ -110,6 +113,9 @@
             
                 <ul>
     
+        <li><a href="/soft/ansible">ansible</a></li>
+        
+    
         <li><a href="/soft/docker">docker</a></li>
         
     
@@ -156,11 +162,11 @@
 </nav>
 
             </div>
-            <div class='content'>
+            <div class='doctave-content'>
                 <p>Гайд по установке docker, docker-compose + интеграция в portainer</p>
 <p><strong>tags</strong> <code>isolation</code> <code>docker-compose</code>
 <strong>time</strong> 2021-12-28 22:00</p>
-<h2 id="установка-для-ubuntu-1">Установка для ubuntu</h2>
+<h2 id="установка-для-ubuntu">Установка для ubuntu</h2>
 <pre><code class="language-bash">sudo apt-get remove docker docker-engine docker.io
 sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -169,7 +175,7 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 sudo apt-get update
 sudo apt-get install docker-ce
 </code></pre>
-<h2 id="установка-для-debian-2">Установка для debian</h2>
+<h2 id="установка-для-debian">Установка для debian</h2>
 <pre><code class="language-bash">sudo apt-get remove docker docker-engine docker.io
 sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
@@ -178,13 +184,13 @@ add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(
 sudo apt-get update
 sudo apt-get install docker-ce
 </code></pre>
-<h2 id="использование-докера-без-рута-3">Использование докера без рута</h2>
+<h2 id="использование-докера-без-рута">Использование докера без рута</h2>
 <pre><code class="language-bash">sudo usermod -aG docker $USER
 newgrp docker
 sudo systemctl restart docker
 sudo chmod 666 /var/run/docker.sock
 </code></pre>
-<h2 id="установка-docker-compose-4">Установка docker-compose</h2>
+<h2 id="установка-docker-compose">Установка docker-compose</h2>
 <p>Через apt</p>
 <pre><code class="language-bash">sudo apt install docker-compose
 </code></pre>
@@ -192,7 +198,7 @@ sudo chmod 666 /var/run/docker.sock
 <pre><code class="language-bash">sudo curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 </code></pre>
-<h2 id="настройка-агента-для-portainer-5">Настройка агента для portainer</h2>
+<h2 id="настройка-агента-для-portainer">Настройка агента для portainer</h2>
 <p>Правим конфиг</p>
 <pre><code class="language-bash">sudo systemctl edit --full docker.service
 </code></pre>
@@ -216,43 +222,52 @@ sudo service docker restart
                     <p class='page-nav-header'>On this page</p>
                     <ul>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#установка-для-ubuntu-1'>Установка для ubuntu</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#установка-для-ubuntu'>Установка для ubuntu</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#установка-для-debian-2'>Установка для debian</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#установка-для-debian'>Установка для debian</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#использование-докера-без-рута-3'>Использование докера без рута</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#использование-докера-без-рута'>Использование докера без рута</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#установка-docker-compose-4'>Установка docker-compose</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#установка-docker-compose'>Установка docker-compose</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#настройка-агента-для-portainer-5'>Настройка агента для portainer</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#настройка-агента-для-portainer'>Настройка агента для portainer</a>
+                        </li>
                         
                     </ul>
                 </div>
             </div>
             <div class='wave-container'>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                    <path fill-opacity="0.35" d="M0,192L60,213.3C120,235,240,277,360,277.3C480,277,600,235,720,192C840,149,960,107,1080,122.7C1200,139,1320,213,1380,250.7L1440,288L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
-                    <path fill-opacity="0.5" d="M0,160L60,181.3C120,203,240,245,360,229.3C480,213,600,139,720,138.7C840,139,960,213,1080,229.3C1200,245,1320,203,1380,181.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
-                    <path fill-opacity="0.2" d="M0,224L60,197.3C120,171,240,117,360,117.3C480,117,600,171,720,186.7C840,203,960,181,1080,186.7C1200,192,1320,224,1380,240L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+                    <path fill-opacity="0.35"
+                        d="M0,192L60,213.3C120,235,240,277,360,277.3C480,277,600,235,720,192C840,149,960,107,1080,122.7C1200,139,1320,213,1380,250.7L1440,288L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                    </path>
+                    <path fill-opacity="0.5"
+                        d="M0,160L60,181.3C120,203,240,245,360,229.3C480,213,600,139,720,138.7C840,139,960,213,1080,229.3C1200,245,1320,203,1380,181.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                    </path>
+                    <path fill-opacity="0.2"
+                        d="M0,224L60,197.3C120,171,240,117,360,117.3C480,117,600,171,720,186.7C840,203,960,181,1080,186.7C1200,192,1320,224,1380,240L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                    </path>
                 </svg>
                 <p>Powered by <a href='https://cli.doctave.com' target='_blank'>Doctave</a></p>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="/assets/mermaid.js?v=1643136942"></script>
-    <script type="text/javascript" src="/assets/elasticlunr.js?v=1643136942"></script>
-    <script type="text/javascript" src="/assets/doctave-app.js?v=1643136942"></script>
-    <script type="text/javascript" src="/assets/prism.js?v=1643136942"></script>
+    <script type="text/javascript" src="/assets/katex.js?v=1703437060"></script>
+    <script type="text/javascript" src="/assets/mermaid.js?v=1703437060"></script>
+    <script type="text/javascript" src="/assets/elasticlunr.js?v=1703437060"></script>
+    <script type="text/javascript" src="/assets/prism.js?v=1703437060"></script>
+    <script type="text/javascript" src="/assets/doctave-app.js?v=1703437060"></script>
+
+    
 </body>
 
 </html>

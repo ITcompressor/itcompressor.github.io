@@ -9,17 +9,20 @@
     <meta name="description" content="Documentation for ITcompressor">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
+        rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1643136942" media="screen" />
-    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1643136942" media="screen" />
-
-    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1643136942" media="screen" />
-
-    
+    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1703437060"
+        media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1703437060"
+        media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/katex.css?v=1703437060" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1703437060"
+        media="screen" />
 
     <script>
-        var DOCTAVE_TIMESTAMP = "1643136942";
+        var DOCTAVE_TIMESTAMP = "1703437060";
         var BASE_PATH = "/";
         var color = localStorage.getItem('doctave-color')
 
@@ -44,9 +47,9 @@
         <div class='header'>
             <div class='logo'>
                 
-                    <a href="/">
-                        <img src="/favicon.ico" alt='ITcompressor logo'></img>
-                    </a>
+                <a href="/">
+                    <img src="/favicon.ico" alt='ITcompressor logo'></img>
+                </a>
                 
                 <h2 class='project-name'>
                     <a href="/">
@@ -110,6 +113,9 @@
             
                 <ul>
     
+        <li><a href="/soft/ansible">ansible</a></li>
+        
+    
         <li><a href="/soft/docker">docker</a></li>
         
     
@@ -156,51 +162,51 @@
 </nav>
 
             </div>
-            <div class='content'>
+            <div class='doctave-content'>
                 <p>Заметка по ssh</p>
 <p><strong>tags</strong> <code>chmod</code> <code>generate ssh</code> <code>scp</code> <code>tunel</code> <code>forwarding</code> <code>port</code>
 <strong>time</strong> 2021-11-21 01:17
 <strong>links</strong> <a href="https://www.cyberciti.biz/faq/unix-linux-execute-command-using-ssh/">Run / Execute Command Using SSH</a> |</p>
-<h2 id="подключение-1">Подключение</h2>
+<h2 id="подключение">Подключение</h2>
 <p>-p - выбор порта, по умолчанию 22</p>
 <pre><code class="language-bash">ssh -p 2222 cs@10.0.0.5
 </code></pre>
-<h2 id="port-forwarding-2">Port forwarding</h2>
+<h2 id="port-forwarding">Port forwarding</h2>
 <pre><code class="language-bash">ssh -L 27017:localhost:27017 qwer@next-way.by
 </code></pre>
-<h2 id="скачивание-файлов-3">Скачивание файлов</h2>
+<h2 id="скачивание-файлов">Скачивание файлов</h2>
 <pre><code class="language-bash">scp cs@10.0.0.5:/home/cs/foobar.txt /home/cs/foobar.txt
 </code></pre>
 <p>или</p>
 <pre><code class="language-bash">scp cs@10.0.0.5:~/foobar.txt .
 </code></pre>
-<h2 id="скачивание-большого-количества-файлов-4">Скачивание большого количества файлов</h2>
+<h2 id="скачивание-большого-количества-файлов">Скачивание большого количества файлов</h2>
 <pre><code class="language-bash">scp cs@10.0.0.5:'/etc/nginx/sites-enabled/*' ./
 </code></pre>
-<h2 id="загрузка-файла(ов)-на-сервер-5">Загрузка файла(ов) на сервер</h2>
+<h2 id="загрузка-файла(ов)-на-сервер">Загрузка файла(ов) на сервер</h2>
 <p>-P - порт, по умолчанию 22</p>
 <pre><code class="language-bash">scp .ssh/id_rsa* -P 2223 cs@10.0.0.5:~/.ssh/
 </code></pre>
 <p>или</p>
 <pre><code class="language-bash">scp -P2222 nextcloud-20.0.2.zip qwer@home.next-way.by:~/.
 </code></pre>
-<h2 id="копирование-публичного-ключа-на-сервер-6">Копирование публичного ключа на сервер</h2>
+<h2 id="копирование-публичного-ключа-на-сервер">Копирование публичного ключа на сервер</h2>
 <pre><code class="language-bash">ssh-copy-id cs@10.0.0.5
 </code></pre>
 <p>или</p>
 <pre><code class="language-bash">cat ~/.ssh/id_rsa.pub | ssh cs@10.0.0.5 "cat &gt;&gt; /home/cs/.ssh/authorized_keys"
 </code></pre>
-<h3 id="для-windows-7">для windows</h3>
+<h3 id="для-windows">для windows</h3>
 <pre><code class="language-bash">cat ~/.ssh/id_rsa.pub | ssh admin@10.0.0.5 "cat &gt;&gt; C:\Users\Admin\.ssh\authorized_keys"
 </code></pre>
-<h2 id="генерация-ключей-8">Генерация ключей</h2>
+<h2 id="генерация-ключей">Генерация ключей</h2>
 <pre><code class="language-bash">ssh-keygen -t rsa -b 4096 -C "cs@next-way.by"
 </code></pre>
-<h3 id="фикс-прав-для-ключей-(если-выбивает-ошибку)-9">Фикс прав для ключей (если выбивает ошибку)</h3>
+<h3 id="фикс-прав-для-ключей-(если-выбивает-ошибку)">Фикс прав для ключей (если выбивает ошибку)</h3>
 <pre><code class="language-bash">chmod 644 ~/.ssh/authorized_keys
 chmod 600 .ssh/ -R	
 </code></pre>
-<h2 id="запуск-команд-из-под-рута-10">Запуск команд из под рута</h2>
+<h2 id="запуск-команд-из-под-рута">Запуск команд из под рута</h2>
 <pre><code class="language-bash">## sudo syntax ##
 ssh -t cs@10.0.0.5 sudo command
 ssh -t cs@10.0.0.5 'sudo command1 arg1 arg2'
@@ -212,10 +218,10 @@ ssh cs@10.0.0.5 su -c "/path/to/command1 arg1 arg2"
 ssh cs@10.0.0.5 su --session-command="/path/to/command1 arg1 arg2"
 ssh cs@10.0.0.5 su --session-command="/sbin/service httpd restart"
 </code></pre>
-<h2 id="запуск-скрипта-на-сервере-11">Запуск скрипта на сервере</h2>
+<h2 id="запуск-скрипта-на-сервере">Запуск скрипта на сервере</h2>
 <pre><code class="language-bash">ssh cs@10.0.0.5 &lt; commands.txt
 </code></pre>
-<h2 id="правильная-конфигурация-ssh-сервера-12">Правильная конфигурация ssh сервера</h2>
+<h2 id="правильная-конфигурация-ssh-сервера">Правильная конфигурация ssh сервера</h2>
 <p>Правим путь</p>
 <pre><code class="language-bash">sudo nano /etc/ssh/sshd_config
 </code></pre>
@@ -232,71 +238,80 @@ ssh cs@10.0.0.5 su --session-command="/sbin/service httpd restart"
                     <p class='page-nav-header'>On this page</p>
                     <ul>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#подключение-1'>Подключение</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#подключение'>Подключение</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#port-forwarding-2'>Port forwarding</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#port-forwarding'>Port forwarding</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#скачивание-файлов-3'>Скачивание файлов</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#скачивание-файлов'>Скачивание файлов</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#скачивание-большого-количества-файлов-4'>Скачивание большого количества файлов</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#скачивание-большого-количества-файлов'>Скачивание большого количества файлов</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#загрузка-файла(ов)-на-сервер-5'>Загрузка файла(ов) на сервер</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#загрузка-файла(ов)-на-сервер'>Загрузка файла(ов) на сервер</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#копирование-публичного-ключа-на-сервер-6'>Копирование публичного ключа на сервер</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#копирование-публичного-ключа-на-сервер'>Копирование публичного ключа на сервер</a>
+                        </li>
                         
-                            <li class='page-nav-level-3'>
-                                <a href='#для-windows-7'>для windows</a>
-                            </li>
+                        <li class='page-nav-level-3'>
+                            <a href='#для-windows'>для windows</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#генерация-ключей-8'>Генерация ключей</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#генерация-ключей'>Генерация ключей</a>
+                        </li>
                         
-                            <li class='page-nav-level-3'>
-                                <a href='#фикс-прав-для-ключей-(если-выбивает-ошибку)-9'>Фикс прав для ключей (если выбивает ошибку)</a>
-                            </li>
+                        <li class='page-nav-level-3'>
+                            <a href='#фикс-прав-для-ключей-(если-выбивает-ошибку)'>Фикс прав для ключей (если выбивает ошибку)</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#запуск-команд-из-под-рута-10'>Запуск команд из под рута</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#запуск-команд-из-под-рута'>Запуск команд из под рута</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#запуск-скрипта-на-сервере-11'>Запуск скрипта на сервере</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#запуск-скрипта-на-сервере'>Запуск скрипта на сервере</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#правильная-конфигурация-ssh-сервера-12'>Правильная конфигурация ssh сервера</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#правильная-конфигурация-ssh-сервера'>Правильная конфигурация ssh сервера</a>
+                        </li>
                         
                     </ul>
                 </div>
             </div>
             <div class='wave-container'>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                    <path fill-opacity="0.35" d="M0,192L60,213.3C120,235,240,277,360,277.3C480,277,600,235,720,192C840,149,960,107,1080,122.7C1200,139,1320,213,1380,250.7L1440,288L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
-                    <path fill-opacity="0.5" d="M0,160L60,181.3C120,203,240,245,360,229.3C480,213,600,139,720,138.7C840,139,960,213,1080,229.3C1200,245,1320,203,1380,181.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
-                    <path fill-opacity="0.2" d="M0,224L60,197.3C120,171,240,117,360,117.3C480,117,600,171,720,186.7C840,203,960,181,1080,186.7C1200,192,1320,224,1380,240L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+                    <path fill-opacity="0.35"
+                        d="M0,192L60,213.3C120,235,240,277,360,277.3C480,277,600,235,720,192C840,149,960,107,1080,122.7C1200,139,1320,213,1380,250.7L1440,288L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                    </path>
+                    <path fill-opacity="0.5"
+                        d="M0,160L60,181.3C120,203,240,245,360,229.3C480,213,600,139,720,138.7C840,139,960,213,1080,229.3C1200,245,1320,203,1380,181.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                    </path>
+                    <path fill-opacity="0.2"
+                        d="M0,224L60,197.3C120,171,240,117,360,117.3C480,117,600,171,720,186.7C840,203,960,181,1080,186.7C1200,192,1320,224,1380,240L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                    </path>
                 </svg>
                 <p>Powered by <a href='https://cli.doctave.com' target='_blank'>Doctave</a></p>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="/assets/mermaid.js?v=1643136942"></script>
-    <script type="text/javascript" src="/assets/elasticlunr.js?v=1643136942"></script>
-    <script type="text/javascript" src="/assets/doctave-app.js?v=1643136942"></script>
-    <script type="text/javascript" src="/assets/prism.js?v=1643136942"></script>
+    <script type="text/javascript" src="/assets/katex.js?v=1703437060"></script>
+    <script type="text/javascript" src="/assets/mermaid.js?v=1703437060"></script>
+    <script type="text/javascript" src="/assets/elasticlunr.js?v=1703437060"></script>
+    <script type="text/javascript" src="/assets/prism.js?v=1703437060"></script>
+    <script type="text/javascript" src="/assets/doctave-app.js?v=1703437060"></script>
+
+    
 </body>
 
 </html>

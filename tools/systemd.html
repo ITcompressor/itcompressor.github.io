@@ -9,17 +9,20 @@
     <meta name="description" content="Documentation for ITcompressor">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
+        rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1643136942" media="screen" />
-    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1643136942" media="screen" />
-
-    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1643136942" media="screen" />
-
-    
+    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1703437060"
+        media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1703437060"
+        media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/katex.css?v=1703437060" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1703437060"
+        media="screen" />
 
     <script>
-        var DOCTAVE_TIMESTAMP = "1643136942";
+        var DOCTAVE_TIMESTAMP = "1703437060";
         var BASE_PATH = "/";
         var color = localStorage.getItem('doctave-color')
 
@@ -44,9 +47,9 @@
         <div class='header'>
             <div class='logo'>
                 
-                    <a href="/">
-                        <img src="/favicon.ico" alt='ITcompressor logo'></img>
-                    </a>
+                <a href="/">
+                    <img src="/favicon.ico" alt='ITcompressor logo'></img>
+                </a>
                 
                 <h2 class='project-name'>
                     <a href="/">
@@ -110,6 +113,9 @@
             
                 <ul>
     
+        <li><a href="/soft/ansible">ansible</a></li>
+        
+    
         <li><a href="/soft/docker">docker</a></li>
         
     
@@ -156,15 +162,15 @@
 </nav>
 
             </div>
-            <div class='content'>
+            <div class='doctave-content'>
                 <p>Микрогайд по systemd</p>
 <p><strong>tags</strong> <code>service</code> <code>runner</code>
 <strong>time</strong> 2021-12-05 15:26
 <strong>links</strong> <a href="https://www.8host.com/blog/upravlenie-servisami-i-yunitami-systemd-s-pomoshhyu-systemctl/">nice guide</a> |</p>
-<h2 id="перзагрузить-конфигурацию,-а-если-не-получится-без-перезагрузки,-то-и-сервис-1">Перзагрузить конфигурацию, а если не получится без перезагрузки, то и сервис</h2>
+<h2 id="перзагрузить-конфигурацию,-а-если-не-получится-без-перезагрузки,-то-и-сервис">Перзагрузить конфигурацию, а если не получится без перезагрузки, то и сервис</h2>
 <pre><code class="language-bash">sudo systemctl reload-or-restart application.service
 </code></pre>
-<h2 id="включение-и-отключение-сервисов-(автозапуск)-2">Включение и отключение сервисов (автозапуск)</h2>
+<h2 id="включение-и-отключение-сервисов-(автозапуск)">Включение и отключение сервисов (автозапуск)</h2>
 <pre><code class="language-bash">sudo systemctl enable application.service
 
 sudo systemctl disable application.service
@@ -172,7 +178,7 @@ sudo systemctl disable application.service
 <blockquote>
 <p>Это создаст символическую ссылку на копию файла сервиса (обычно в /lib/systemd/system или /etc/systemd/system) в точке на диске, где systemd ищет файлы для автозапуска (обычно /etc/systemd/system/some_target.target.want</p>
 </blockquote>
-<h2 id="статус-и-состояние-3">Статус и состояние</h2>
+<h2 id="статус-и-состояние">Статус и состояние</h2>
 <pre><code class="language-bash">systemctl status application.service
 
 systemctl is-active application.service
@@ -181,10 +187,10 @@ systemctl is-enabled application.service
 
 systemctl is-failed application.service
 </code></pre>
-<h2 id="список-юнит-файлов-4">Список юнит файлов</h2>
+<h2 id="список-юнит-файлов">Список юнит файлов</h2>
 <pre><code class="language-bash">systemctl list-unit-files
 </code></pre>
-<h3 id="список-юнитов-systemd-5">Список юнитов systemd</h3>
+<h3 id="список-юнитов-systemd">Список юнитов systemd</h3>
 <pre><code class="language-bash">systemctl list-units
 </code></pre>
 <table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
@@ -194,27 +200,27 @@ systemctl is-failed application.service
 <tr><td>SUB</td><td>состояние более низкого уровня, которое сообщает подробную информацию об устройстве. Это часто зависит от типа юнита, состояния и фактического метода, в котором запущен юнит.</td></tr>
 <tr><td>DESCRIPTION</td><td>краткое описание функций юнита.</td></tr>
 </tbody></table>
-<h2 id="отображение-юнит-файла-6">Отображение юнит файла</h2>
+<h2 id="отображение-юнит-файла">Отображение юнит файла</h2>
 <pre><code class="language-bash">systemctl cat atd.service
 </code></pre>
-<h3 id="отображение-зависимостей-7">Отображение зависимостей</h3>
+<h3 id="отображение-зависимостей">Отображение зависимостей</h3>
 <pre><code class="language-bash">systemctl list-dependencies sshd.service
 </code></pre>
-<h3 id="отобразить-свойства-юнита-8">Отобразить свойства юнита</h3>
+<h3 id="отобразить-свойства-юнита">Отобразить свойства юнита</h3>
 <pre><code class="language-bash">systemctl show sshd.service
 </code></pre>
-<h2 id="команды-маскирования-(блокировки)-юнитов-9">Команды маскирования (блокировки) юнитов</h2>
+<h2 id="команды-маскирования-(блокировки)-юнитов">Команды маскирования (блокировки) юнитов</h2>
 <pre><code class="language-bash">sudo systemctl mask nginx.service
 
 sudo systemctl unmask nginx.service
 </code></pre>
-<h2 id="редактирование-юнит-файлов-10">Редактирование юнит файлов</h2>
+<h2 id="редактирование-юнит-файлов">Редактирование юнит файлов</h2>
 <pre><code class="language-bash">sudo systemctl edit -–full nginx.service
 </code></pre>
 <blockquote>
 <p>Это загрузит текущий юнит-файл в редактор, где его можно будет изменить. Когда редактор закроется, измененный файл будет записан в /etc/systemd/system и будет иметь приоритет над определением юнита системы (обычно он находится где-то в /lib/systemd/system).</p>
 </blockquote>
-<h2 id="удаление-дополнений-(изменений)-11">Удаление дополнений (изменений)</h2>
+<h2 id="удаление-дополнений-(изменений)">Удаление дополнений (изменений)</h2>
 <pre><code class="language-bash">sudo rm -r /etc/systemd/system/nginx.service.d
 
 sudo rm /etc/systemd/system/nginx.service
@@ -228,67 +234,76 @@ sudo systemctl daemon-reload
                     <p class='page-nav-header'>On this page</p>
                     <ul>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#перзагрузить-конфигурацию,-а-если-не-получится-без-перезагрузки,-то-и-сервис-1'>Перзагрузить конфигурацию, а если не получится без перезагрузки, то и сервис</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#перзагрузить-конфигурацию,-а-если-не-получится-без-перезагрузки,-то-и-сервис'>Перзагрузить конфигурацию, а если не получится без перезагрузки, то и сервис</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#включение-и-отключение-сервисов-(автозапуск)-2'>Включение и отключение сервисов (автозапуск)</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#включение-и-отключение-сервисов-(автозапуск)'>Включение и отключение сервисов (автозапуск)</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#статус-и-состояние-3'>Статус и состояние</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#статус-и-состояние'>Статус и состояние</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#список-юнит-файлов-4'>Список юнит файлов</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#список-юнит-файлов'>Список юнит файлов</a>
+                        </li>
                         
-                            <li class='page-nav-level-3'>
-                                <a href='#список-юнитов-systemd-5'>Список юнитов systemd</a>
-                            </li>
+                        <li class='page-nav-level-3'>
+                            <a href='#список-юнитов-systemd'>Список юнитов systemd</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#отображение-юнит-файла-6'>Отображение юнит файла</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#отображение-юнит-файла'>Отображение юнит файла</a>
+                        </li>
                         
-                            <li class='page-nav-level-3'>
-                                <a href='#отображение-зависимостей-7'>Отображение зависимостей</a>
-                            </li>
+                        <li class='page-nav-level-3'>
+                            <a href='#отображение-зависимостей'>Отображение зависимостей</a>
+                        </li>
                         
-                            <li class='page-nav-level-3'>
-                                <a href='#отобразить-свойства-юнита-8'>Отобразить свойства юнита</a>
-                            </li>
+                        <li class='page-nav-level-3'>
+                            <a href='#отобразить-свойства-юнита'>Отобразить свойства юнита</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#команды-маскирования-(блокировки)-юнитов-9'>Команды маскирования (блокировки) юнитов</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#команды-маскирования-(блокировки)-юнитов'>Команды маскирования (блокировки) юнитов</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#редактирование-юнит-файлов-10'>Редактирование юнит файлов</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#редактирование-юнит-файлов'>Редактирование юнит файлов</a>
+                        </li>
                         
-                            <li class='page-nav-level-2'>
-                                <a href='#удаление-дополнений-(изменений)-11'>Удаление дополнений (изменений)</a>
-                            </li>
+                        <li class='page-nav-level-2'>
+                            <a href='#удаление-дополнений-(изменений)'>Удаление дополнений (изменений)</a>
+                        </li>
                         
                     </ul>
                 </div>
             </div>
             <div class='wave-container'>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                    <path fill-opacity="0.35" d="M0,192L60,213.3C120,235,240,277,360,277.3C480,277,600,235,720,192C840,149,960,107,1080,122.7C1200,139,1320,213,1380,250.7L1440,288L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
-                    <path fill-opacity="0.5" d="M0,160L60,181.3C120,203,240,245,360,229.3C480,213,600,139,720,138.7C840,139,960,213,1080,229.3C1200,245,1320,203,1380,181.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
-                    <path fill-opacity="0.2" d="M0,224L60,197.3C120,171,240,117,360,117.3C480,117,600,171,720,186.7C840,203,960,181,1080,186.7C1200,192,1320,224,1380,240L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+                    <path fill-opacity="0.35"
+                        d="M0,192L60,213.3C120,235,240,277,360,277.3C480,277,600,235,720,192C840,149,960,107,1080,122.7C1200,139,1320,213,1380,250.7L1440,288L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                    </path>
+                    <path fill-opacity="0.5"
+                        d="M0,160L60,181.3C120,203,240,245,360,229.3C480,213,600,139,720,138.7C840,139,960,213,1080,229.3C1200,245,1320,203,1380,181.3L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                    </path>
+                    <path fill-opacity="0.2"
+                        d="M0,224L60,197.3C120,171,240,117,360,117.3C480,117,600,171,720,186.7C840,203,960,181,1080,186.7C1200,192,1320,224,1380,240L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                    </path>
                 </svg>
                 <p>Powered by <a href='https://cli.doctave.com' target='_blank'>Doctave</a></p>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="/assets/mermaid.js?v=1643136942"></script>
-    <script type="text/javascript" src="/assets/elasticlunr.js?v=1643136942"></script>
-    <script type="text/javascript" src="/assets/doctave-app.js?v=1643136942"></script>
-    <script type="text/javascript" src="/assets/prism.js?v=1643136942"></script>
+    <script type="text/javascript" src="/assets/katex.js?v=1703437060"></script>
+    <script type="text/javascript" src="/assets/mermaid.js?v=1703437060"></script>
+    <script type="text/javascript" src="/assets/elasticlunr.js?v=1703437060"></script>
+    <script type="text/javascript" src="/assets/prism.js?v=1703437060"></script>
+    <script type="text/javascript" src="/assets/doctave-app.js?v=1703437060"></script>
+
+    
 </body>
 
 </html>
