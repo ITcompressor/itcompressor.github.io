@@ -2,7 +2,8 @@
 
 **tags** `chmod` `generate ssh` `scp` `tunel` `forwarding` `port`
 **time** 2021-11-21 01:17
-**links** [Run / Execute Command Using SSH](https://www.cyberciti.biz/faq/unix-linux-execute-command-using-ssh/) |
+
+Как запускать удаленно команды через SSH взято отсюда [https://www.cyberciti.biz/faq/unix-linux-execute-command-using-ssh/](https://www.cyberciti.biz/faq/unix-linux-execute-command-using-ssh/)
 
 ## Подключение
 -p - выбор порта, по умолчанию 22

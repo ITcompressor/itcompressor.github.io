@@ -2,7 +2,8 @@
 
 **tags** `service` `runner`
 **time** 2021-12-05 15:26
-**links** [nice guide](https://www.8host.com/blog/upravlenie-servisami-i-yunitami-systemd-s-pomoshhyu-systemctl/) |
+
+Более подробный гайд тут [https://www.8host.com/blog/upravlenie-servisami-i-yunitami-systemd-s-pomoshhyu-systemctl/](https://www.8host.com/blog/upravlenie-servisami-i-yunitami-systemd-s-pomoshhyu-systemctl/)
 
 ## Перзагрузить конфигурацию, а если не получится без перезагрузки, то и сервис
 ```bash
