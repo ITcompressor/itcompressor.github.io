@@ -13,16 +13,16 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1719742894"
+    <link rel="stylesheet" type="text/css" href="/assets/normalize.css?v=1719743637"
         media="screen" />
-    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1719742894"
+    <link rel="stylesheet" type="text/css" href="/assets/doctave-style.css?v=1719743637"
         media="screen" />
-    <link rel="stylesheet" type="text/css" href="/assets/katex.css?v=1719742894" media="screen" />
-    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1719742894"
+    <link rel="stylesheet" type="text/css" href="/assets/katex.css?v=1719743637" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/assets/prism-ghcolors.css?v=1719743637"
         media="screen" />
 
     <script>
-        var DOCTAVE_TIMESTAMP = "1719742894";
+        var DOCTAVE_TIMESTAMP = "1719743637";
         var BASE_PATH = "/";
         var color = localStorage.getItem('doctave-color')
 
@@ -168,38 +168,50 @@
             <div class='doctave-content'>
                 <p>Работа с архивами через консоль</p>
 <p><strong>tags</strong> <code>tar.xz</code> <code>zip</code> <code>unrar</code> <code>tar</code> <code>gz</code> <code>bz2</code> <code>rar</code> <code>7zip</code> <code>tar.xz</code> <code>tgz</code>
-<strong>time</strong> 2021-09-05 20:26</p>
-<h2 id="создание-zip-архива">Создание zip архива</h2>
-<pre><code class="language-bash">zip -r myarch.zip mydir/*
+<strong>time</strong> 2024-06-30 13:32</p>
+<h2 id="zip-архивы">ZIP архивы</h2>
+<pre><code class="language-bash"># Создание
+zip -r myarchive.zip mydir/*
+# Распаковка
+unzip myarchive.zip
 </code></pre>
-<h2 id="распаковка-rar-архива">Распаковка rar архива</h2>
-<pre><code class="language-bash">unrar e file.rar
+<h2 id="rar-архивы">RAR архивы</h2>
+<pre><code class="language-bash">rar a -v myarchive.rar *.*  # Создайте новый архив с подробным выводом
+rar u -p mysecret myarchive.rar *.*  # Добавьте файлы к существующему архиву с паролем
+rar x -v myarchive.rar  # Распакуйте архив с подробным выводом
+# Распаковка
+unrar e myarchive.rar
+# Распаковка с сохранением иерархии
+unrar x myarchive.rar
 </code></pre>
-<h2 id="распаковка-rar-с-сохранением-иерархии">Распаковка rar с сохранением иерархии</h2>
-<pre><code class="language-bash">unrar x file.rar
-</code></pre>
-<h2 id="распаковка-gz-архива">Распаковка gz архива</h2>
+<h2 id="gz-архивы">GZ архивы</h2>
 <pre><code class="language-bash">gzip -d application-05-11-2020-7.log.gz
 </code></pre>
-<h2 id="создание-tar-контейнера">Создание tar контейнера</h2>
-<pre><code class="language-bash">tar -cvf name.tar /path/to/file1 /path/to/file2 /path/to/file3
+<h2 id="tar-контейнеры">TAR контейнеры</h2>
+<pre><code class="language-bash"># Создание
+tar -cvf myarchive.tar /path/to/file1 /path/to/file2 /path/to/file3
+tar -cvzf myarchive.tar.gz -c folder/
+tar -cJf myarchive.tar.xz folder4/
+# Распаковки с расширениями
+tar -xvf myarchive.tar
+tar -xvjf myarchive.tar.bz2
+tar -xvjf myarchive.tar.bz
+tar -xf myarchive.tar.xz
+tar zxvf myarchive.tgz
+tar -xvzf myarchive.tar.gz 
 </code></pre>
-<h2 id="примеры-распаковка-tar-с-разными-типами-архивов">Примеры распаковка tar с разными типами архивов</h2>
-<pre><code class="language-bash">tar -xvf foo.tar
-tar -xvzf foo.tar.gz 
-tar -xvjf foo.tar.bz2 
-tar -xf file.tar.xz
-tar zxvf backups.tgz
+<h2 id="xz-архивы">xz архивы</h2>
+<pre><code class="language-bash">xz -d Manjaro-ARM-phosh-pinephonepro-beta35.img.xz
 </code></pre>
-<h2 id="создание-tar.xz">Создание tar.xz</h2>
-<pre><code class="language-bash">tar -cJf kali-arm64.tar.xz kali-arm64/
-</code></pre>
-<h2 id="установка-7z-в-debian-like-дистрибутивах">Установка 7z в debian like дистрибутивах</h2>
+<h2 id="7z-архивы">7z архивы</h2>
+<h3 id="установка-7z-в-debian-like-дистрибутивах">Установка 7z в debian like дистрибутивах</h3>
 <pre><code class="language-bash">apt install p7zip
 </code></pre>
-<h2 id="примеры-работы-с-7z">Примеры работы с 7z</h2>
-<pre><code class="language-bash">7z x -so yourfile.tar.7z | tar xf - -C target_dir
-7z x yourfile.7z
+<h3 id="примеры-работы-с-7z">Примеры работы с 7z</h3>
+<pre><code class="language-bash"># tar.7z
+7z x -so myarchive.tar.7z | tar xf - -C target_dir
+# Распаковка
+7z x myarchive.7z
 </code></pre>
 
             </div>
@@ -209,38 +221,34 @@ tar zxvf backups.tgz
                     <ul>
                         
                         <li class='page-nav-level-2'>
-                            <a href='#создание-zip-архива'>Создание zip архива</a>
+                            <a href='#zip-архивы'>ZIP архивы</a>
                         </li>
                         
                         <li class='page-nav-level-2'>
-                            <a href='#распаковка-rar-архива'>Распаковка rar архива</a>
+                            <a href='#rar-архивы'>RAR архивы</a>
                         </li>
                         
                         <li class='page-nav-level-2'>
-                            <a href='#распаковка-rar-с-сохранением-иерархии'>Распаковка rar с сохранением иерархии</a>
+                            <a href='#gz-архивы'>GZ архивы</a>
                         </li>
                         
                         <li class='page-nav-level-2'>
-                            <a href='#распаковка-gz-архива'>Распаковка gz архива</a>
+                            <a href='#tar-контейнеры'>TAR контейнеры</a>
                         </li>
                         
                         <li class='page-nav-level-2'>
-                            <a href='#создание-tar-контейнера'>Создание tar контейнера</a>
+                            <a href='#xz-архивы'>xz архивы</a>
                         </li>
                         
                         <li class='page-nav-level-2'>
-                            <a href='#примеры-распаковка-tar-с-разными-типами-архивов'>Примеры распаковка tar с разными типами архивов</a>
+                            <a href='#7z-архивы'>7z архивы</a>
                         </li>
                         
-                        <li class='page-nav-level-2'>
-                            <a href='#создание-tar.xz'>Создание tar.xz</a>
-                        </li>
-                        
-                        <li class='page-nav-level-2'>
+                        <li class='page-nav-level-3'>
                             <a href='#установка-7z-в-debian-like-дистрибутивах'>Установка 7z в debian like дистрибутивах</a>
                         </li>
                         
-                        <li class='page-nav-level-2'>
+                        <li class='page-nav-level-3'>
                             <a href='#примеры-работы-с-7z'>Примеры работы с 7z</a>
                         </li>
                         
@@ -263,11 +271,11 @@ tar zxvf backups.tgz
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="/assets/katex.js?v=1719742894"></script>
-    <script type="text/javascript" src="/assets/mermaid.js?v=1719742894"></script>
-    <script type="text/javascript" src="/assets/elasticlunr.js?v=1719742894"></script>
-    <script type="text/javascript" src="/assets/prism.js?v=1719742894"></script>
-    <script type="text/javascript" src="/assets/doctave-app.js?v=1719742894"></script>
+    <script type="text/javascript" src="/assets/katex.js?v=1719743637"></script>
+    <script type="text/javascript" src="/assets/mermaid.js?v=1719743637"></script>
+    <script type="text/javascript" src="/assets/elasticlunr.js?v=1719743637"></script>
+    <script type="text/javascript" src="/assets/prism.js?v=1719743637"></script>
+    <script type="text/javascript" src="/assets/doctave-app.js?v=1719743637"></script>
 
     
 </body>
