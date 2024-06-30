@@ -2,7 +2,8 @@ Glassfish (5)
 
 **tags** `web` `gf3` `gf5` `java ee` `server` `gf`
 **date** 2020-12-29 20:22
-**links** [oracle docs](https://docs.oracle.com/cd/E19798-01/821-1757/6nmni99aj/index.html) |
+
+Офф дока от оракла тут [https://docs.oracle.com/cd/E19798-01/821-1757/6nmni99aj/index.html](https://docs.oracle.com/cd/E19798-01/821-1757/6nmni99aj/index.html)
 
 ## Запуск домена\веб-сервера в дебаг моде
 ```bash

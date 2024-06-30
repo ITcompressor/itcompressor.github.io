@@ -2,11 +2,11 @@
 
 **tags** `best linux distro`
 **time** 2021-11-22 22:16
-**links** [guide](https://github.com/48d90782/archlinux_modern_luks_install)
-| [easy](https://www.tecmint.com/arch-linux-installation-and-configuration-guide/)
-| [The official installation guide](https://wiki.archlinux.org/index.php/Installation_Guide) |
 
-> Мой микрогайд по установке и настройке archlinux. Если вы новичек в linux, то лучше даже не пробовать.
+Мой микрогайд по установке и настройке archlinux. Если вы новичек в linux, то лучше даже не пробовать. Другие гайды:
+- С шифрованием [https://github.com/48d90782/archlinux_modern_luks_install](https://github.com/48d90782/archlinux_modern_luks_install)
+- Простой [https://www.tecmint.com/arch-linux-installation-and-configuration-guide/](https://www.tecmint.com/arch-linux-installation-and-configuration-guide/)
+- Официальный [https://wiki.archlinux.org/index.php/Installation_Guide](https://wiki.archlinux.org/index.php/Installation_Guide)
 
 ## 0. Скачиваем iso образ с https://www.archlinux.org/
 

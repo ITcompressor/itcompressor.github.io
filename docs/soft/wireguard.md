@@ -2,7 +2,9 @@
 
 **tags** `vpn` `selfhost`
 **time** 2021-10-16 11:33
-**links** [wireguard guilde](https://devpew.com/blog/wireguard/) | [WireGuard. Настраиваем быстрый VPN](https://youtu.be/03RCvhwcoN0) |
+
+Гайд основан на гайде от devpew [https://devpew.com/blog/wireguard/](https://devpew.com/blog/wireguard/) с видео [https://youtu.be/03RCvhwcoN0](https://youtu.be/03RCvhwcoN0)
+
 
 # Установка wireguard
 ```bash

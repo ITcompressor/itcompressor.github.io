@@ -2,12 +2,12 @@
 
 **tags** `mongo` `mongodb` `replication`
 **date** 2022-01-25 21:48
-**links** [official doc](https://docs.mongodb.com/manual/tutorial/deploy-replica-set/) |
 
-> Replica Set — это кластер серверов MongoDB, реализующий механизм репликации master-slave и автоматическое переключение между ними. Это рекомендуемый механизм репликации от разработчиков MongoDB. ... Primary — основной сервер mongoDB.
+Официальная документация по настройке [https://docs.mongodb.com/manual/tutorial/deploy-replica-set/](https://docs.mongodb.com/manual/tutorial/deploy-replica-set/)
 
-> Ставил 5ую монгу на ubuntu server. Для примера айпишники: 10.0.0.2, 10.0.0.3, 10.0.0.4 (and etc) и кастомный путь 
-> /root/DATA/mongodb
+Replica Set — это кластер серверов MongoDB, реализующий механизм репликации master-slave и автоматическое переключение между ними. Это рекомендуемый механизм репликации от разработчиков MongoDB. ... Primary — основной сервер mongoDB.
+
+Ставил 5ую монгу на ubuntu server. Для примера айпишники: 10.0.0.2, 10.0.0.3, 10.0.0.4 (and etc) и кастомный путь `/root/DATA/mongodb`
 
 ## Установка
 ```bash
