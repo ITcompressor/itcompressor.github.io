@@ -56,7 +56,7 @@ Vim (сокр. от Vi Improved, произносится «вим») — сво
 
 ![vim](/assets/img/vim.png)
 
-## [Работа с архивами через консоль](/tools/archives)
+## [Работа с архивами через консоль](/tools/archives) 2021-09-05
 
 ![zip](/assets/img/zip.jpeg)
 
