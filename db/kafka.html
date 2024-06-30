@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>archives</title>
+    <title>kafka</title>
     <meta name="description" content="Documentation for ITcompressor">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -77,7 +77,7 @@
             
                 <ul>
     
-        <li><a href="/db/kafka">kafka</a></li>
+        <li><a class="active" href="/db/kafka">kafka</a></li>
         
     
         <li><a href="/db/mongo_replica_set">mongo_replica_set</a></li>
@@ -136,7 +136,7 @@
             
                 <ul>
     
-        <li><a class="active" href="/tools/archives">archives</a></li>
+        <li><a href="/tools/archives">archives</a></li>
         
     
         <li><a href="/tools/ssh">ssh</a></li>
@@ -166,40 +166,141 @@
 
             </div>
             <div class='doctave-content'>
-                <p>Работа с архивами через консоль</p>
-<p><strong>tags</strong> <code>tar.xz</code> <code>zip</code> <code>unrar</code> <code>tar</code> <code>gz</code> <code>bz2</code> <code>rar</code> <code>7zip</code> <code>tar.xz</code> <code>tgz</code>
-<strong>time</strong> 2021-09-05 20:26</p>
-<h2 id="создание-zip-архива">Создание zip архива</h2>
-<pre><code class="language-bash">zip -r myarch.zip mydir/*
+                <p>Пример работы с kafka (python)</p>
+<p><strong>tags</strong> <code>kafka</code> <code>mq</code> 
+<strong>date</strong> 2024-06-30 12:39</p>
+<p>Apache Kafka - это система для хранения и передачи данных в реальном времени. Она помогает организовать потоковую обработку данных между приложениями и сервисами.</p>
+<p><strong>Kafka работает следующим образом:</strong></p>
+<ul>
+<li>Данные отправляются в Kafka в виде потока (stream) - это называется "продюсером" (producer).</li>
+<li>Kafka хранит данные в виде сообщений (messages), которые организованы в топиках (topics).</li>
+<li>Препараторы (consumers) могут подписаться на топик и получать сообщения в реальном времени.</li>
+<li>Данные можно хранить в Kafka на ограниченное время или навсегда, в зависимости от настроек.</li>
+</ul>
+<p><strong>Apache Kafka часто используется для:</strong></p>
+<ul>
+<li>Реального времени обработки данных (например, для мониторинга системы)</li>
+<li>Масштабируемых и высокопроизводительных приложений</li>
+<li>Интеграции между разными сервисами и системами</li>
+</ul>
+<h2 id="docker-compose-для-запуска-(kafka.yml)">Docker compose для запуска (kafka.yml)</h2>
+<pre><code class="language-yaml">version: '2'
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "22181:2181"
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    ports:
+      - "29092:29092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 </code></pre>
-<h2 id="распаковка-rar-архива">Распаковка rar архива</h2>
-<pre><code class="language-bash">unrar e file.rar
+<h3 id="команды-запуска">Команды запуска</h3>
+<pre><code class="language-bash">docker compose -f kafka.yml up -d
+
+# Остановить
+docker compose -f kafka.yml down
 </code></pre>
-<h2 id="распаковка-rar-с-сохранением-иерархии">Распаковка rar с сохранением иерархии</h2>
-<pre><code class="language-bash">unrar x file.rar
+<h2 id="листинг-config.py-(общие-настройки)">Листинг config.py (общие настройки)</h2>
+<pre><code class="language-python">HOST = 'localhost'
+PORT = 29092
+WEATHER_TOPIC = 'weather'
 </code></pre>
-<h2 id="распаковка-gz-архива">Распаковка gz архива</h2>
-<pre><code class="language-bash">gzip -d application-05-11-2020-7.log.gz
+<h2 id="листинг-consumer.py-(тот-кто-читает)">Листинг consumer.py (тот кто читает)</h2>
+<pre><code class="language-python">#!/usr/bin/env python
+
+import asyncio
+import json
+from aiokafka import AIOKafkaConsumer
+
+import config
+
+
+def deserializer(serialized):
+    """
+    Десериализатор получаемых данных
+    """
+    return json.loads(serialized)
+
+
+async def event_handler(value):
+    """
+    Обработчик события. Как только мы получаем новое сообщение,
+    будет отрабатывать данная функция
+    """
+    print(f"Temperature: {value['temp']}, weather: {value['weather']}")
+
+
+async def consume():
+    consumer = AIOKafkaConsumer(
+        config.WEATHER_TOPIC,
+        bootstrap_servers=f'{config.HOST}:{config.PORT}',
+        value_deserializer=deserializer
+    )
+    await consumer.start()
+    try:
+        async for msg in consumer:
+            await event_handler(msg.value)
+    finally:
+        await consumer.stop()
+
+
+if __name__ == '__main__':
+    asyncio.run(consume())
 </code></pre>
-<h2 id="создание-tar-контейнера">Создание tar контейнера</h2>
-<pre><code class="language-bash">tar -cvf name.tar /path/to/file1 /path/to/file2 /path/to/file3
-</code></pre>
-<h2 id="примеры-распаковка-tar-с-разными-типами-архивов">Примеры распаковка tar с разными типами архивов</h2>
-<pre><code class="language-bash">tar -xvf foo.tar
-tar -xvzf foo.tar.gz 
-tar -xvjf foo.tar.bz2 
-tar -xf file.tar.xz
-tar zxvf backups.tgz
-</code></pre>
-<h2 id="создание-tar.xz">Создание tar.xz</h2>
-<pre><code class="language-bash">tar -cJf kali-arm64.tar.xz kali-arm64/
-</code></pre>
-<h2 id="установка-7z-в-debian-like-дистрибутивах">Установка 7z в debian like дистрибутивах</h2>
-<pre><code class="language-bash">apt install p7zip
-</code></pre>
-<h2 id="примеры-работы-с-7z">Примеры работы с 7z</h2>
-<pre><code class="language-bash">7z x -so yourfile.tar.7z | tar xf - -C target_dir
-7z x yourfile.7z
+<h2 id="листинг-producer.py-(тот-кто-отправляет)">Листинг producer.py (тот кто отправляет)</h2>
+<pre><code class="language-python">#!/usr/bin/env python
+
+import asyncio
+import json
+import random
+from aiokafka import AIOKafkaProducer
+
+import config
+
+
+def serializer(value):
+    """
+    Обмен данными происходит в байтах, поэтому мы должны
+    сначала перевести наше значение JSON, а затем в байты
+    """
+    return json.dumps(value).encode()
+
+
+async def produce():
+    producer = AIOKafkaProducer(
+        bootstrap_servers=f"{config.HOST}:{config.PORT}",
+        value_serializer=serializer,
+        compression_type="gzip",
+    )
+    await producer.start()
+    try:
+        while True:
+            data = {
+                "temp": random.randint(10, 20),
+                "weather": random.choice(("rainy", "sunny")),
+            }
+            await producer.send(config.WEATHER_TOPIC, data)
+            await asyncio.sleep(random.randint(1, 5))
+    finally:
+        await producer.stop()
+
+
+if __name__ == "__main__":
+    asyncio.run(produce())
 </code></pre>
 
             </div>
@@ -209,39 +310,23 @@ tar zxvf backups.tgz
                     <ul>
                         
                         <li class='page-nav-level-2'>
-                            <a href='#создание-zip-архива'>Создание zip архива</a>
+                            <a href='#docker-compose-для-запуска-(kafka.yml)'>Docker compose для запуска (kafka.yml)</a>
+                        </li>
+                        
+                        <li class='page-nav-level-3'>
+                            <a href='#команды-запуска'>Команды запуска</a>
                         </li>
                         
                         <li class='page-nav-level-2'>
-                            <a href='#распаковка-rar-архива'>Распаковка rar архива</a>
+                            <a href='#листинг-config.py-(общие-настройки)'>Листинг config.py (общие настройки)</a>
                         </li>
                         
                         <li class='page-nav-level-2'>
-                            <a href='#распаковка-rar-с-сохранением-иерархии'>Распаковка rar с сохранением иерархии</a>
+                            <a href='#листинг-consumer.py-(тот-кто-читает)'>Листинг consumer.py (тот кто читает)</a>
                         </li>
                         
                         <li class='page-nav-level-2'>
-                            <a href='#распаковка-gz-архива'>Распаковка gz архива</a>
-                        </li>
-                        
-                        <li class='page-nav-level-2'>
-                            <a href='#создание-tar-контейнера'>Создание tar контейнера</a>
-                        </li>
-                        
-                        <li class='page-nav-level-2'>
-                            <a href='#примеры-распаковка-tar-с-разными-типами-архивов'>Примеры распаковка tar с разными типами архивов</a>
-                        </li>
-                        
-                        <li class='page-nav-level-2'>
-                            <a href='#создание-tar.xz'>Создание tar.xz</a>
-                        </li>
-                        
-                        <li class='page-nav-level-2'>
-                            <a href='#установка-7z-в-debian-like-дистрибутивах'>Установка 7z в debian like дистрибутивах</a>
-                        </li>
-                        
-                        <li class='page-nav-level-2'>
-                            <a href='#примеры-работы-с-7z'>Примеры работы с 7z</a>
+                            <a href='#листинг-producer.py-(тот-кто-отправляет)'>Листинг producer.py (тот кто отправляет)</a>
                         </li>
                         
                     </ul>
